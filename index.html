@@ -250,45 +250,49 @@
       word-break: break-word;
     }
 
+    /* Photo Section Headers */
+    .photo-header-cell {
+      padding: 0 !important;
+      background: #ffffff;
+      height: 22px;
+      text-align: center;
+      vertical-align: middle !important;
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
     .photo-box {
-      height: 220px;
       text-align: center;
       vertical-align: middle !important;
       background: #f8fafc;
       overflow: hidden;
       position: relative;
+      padding: 4px !important;
     }
 
     .photo-box img {
       max-width: 96%;
-      max-height: 210px;
+      max-height: 230px;
       width: auto;
       height: auto;
       object-fit: contain;
       object-position: center;
       display: block;
-      margin: 5px auto;
+      margin: auto;
     }
 
     .photo-box .placeholder {
-      color: #888;
-      font-size: 12px;
+      color: #aaa;
+      font-size: 11px;
       font-weight: 700;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
     }
 
     .big-cell {
       min-height: 90px;
     }
 
-    /* =====================================================
-       IMPACT TABLE
-       ===================================================== */
-
+    /* Impact Table */
     .impact-table {
       width: 100%;
       border-collapse: collapse;
@@ -307,24 +311,12 @@
       font-weight: 700;
     }
 
-
-    /* =====================================================
-       FINAL SECTION
-       EXACT HORIZONTAL REPLICATION + RISK ASSESSMENT
-       ===================================================== */
-
+    /* Final Row */
     .final-section-cell {
       padding: 0 !important;
       vertical-align: top !important;
       background: #ffffff !important;
     }
-
-    /*
-      Horizontal Replication
-
-      Two equal columns:
-      Area | Target Date
-    */
 
     .replication-table {
       width: 100%;
@@ -345,39 +337,25 @@
       padding: 1px 3px;
     }
 
-    /* Main "Horizontal Replication" header */
     .replication-table .replication-main-header {
-      height: 16px;
+      height: 18px;
       font-size: 10px;
       font-weight: 900;
-      padding: 1px 2px;
       text-align: center;
     }
 
-    /* Area / Target Date header */
     .replication-table .replication-column-header {
-      height: 15px;
+      height: 16px;
       font-size: 9px;
       font-weight: 900;
-      padding: 1px 2px;
       text-align: center;
     }
 
-    /* Data rows */
     .replication-table td {
-      height: 15px;
+      height: 18px;
       font-size: 9px;
       font-weight: 700;
-      padding: 1px 3px;
     }
-
-
-    /*
-      Risk Assessment
-
-      This is a completely separate cell on the RIGHT,
-      starting at exactly the same height as Horizontal Replication.
-    */
 
     .risk-assessment-cell {
       padding: 0 !important;
@@ -387,7 +365,7 @@
 
     .risk-assessment-title {
       width: 100%;
-      height: 31px;
+      height: 34px;
       border-bottom: 1px solid #111;
       background: #ffffff;
       color: #000;
@@ -402,21 +380,16 @@
 
     .risk-assessment-content {
       width: 100%;
-      min-height: 59px;
+      min-height: 72px;
       background: #ffffff;
       color: #000;
-      padding: 4px 5px;
+      padding: 6px 8px;
       text-align: left;
       font-size: 9px;
       font-weight: 400;
       white-space: pre-wrap;
       word-break: break-word;
     }
-
-
-    /* =====================================================
-       BUTTONS
-       ===================================================== */
 
     .actions {
       display: flex;
@@ -467,21 +440,17 @@
     }
 
     @media (max-width: 1100px) {
-
       .container {
         flex-direction: column;
         align-items: center;
       }
-
       .input-panel {
         max-width: 100%;
         width: 100%;
       }
-
       .preview-panel {
         min-width: 100%;
       }
-
       #kaizen-form {
         width: 100%;
         max-width: 1120px;
@@ -492,1480 +461,460 @@
 
 <body>
 
-  <!-- =====================================================
-       TOP BAR
-       ===================================================== -->
-
   <div class="top-bar">
-
     <div>
-
-      <div class="logo">
-        My <span>Kaizen</span>
-      </div>
-
-      <p>
-        fill, preview live, download and share
-      </p>
-
+      <div class="logo">My <span>Kaizen</span></div>
+      <p>fill, preview live, download and share</p>
     </div>
-
   </div>
-
 
   <div class="container">
 
-
-    <!-- =====================================================
-         INPUT PANEL
-         ===================================================== -->
-
+    <!-- INPUT PANEL -->
     <div class="input-panel">
-
-
       <div class="field-card">
-
-        <label>
-          Project Ref / Description
-        </label>
-
-        <input
-          type="text"
-          id="projectRef"
-          placeholder="e.g. KZ-2026-014 / Reduce setup time"
-        />
-
+        <label>Project Ref / Description</label>
+        <input type="text" id="projectRef" placeholder="e.g. KZ-2026-014 / Reduce setup time" />
       </div>
 
-
       <div class="field-card">
-
-        <label>
-          Theme / Loss Category
-        </label>
-
-        <input
-          type="text"
-          id="theme"
-          placeholder="e.g. Productivity / Setup loss"
-        />
-
+        <label>Theme / Loss Category</label>
+        <input type="text" id="theme" placeholder="e.g. Productivity / Setup loss" />
       </div>
 
-
       <div class="field-card">
-
-        <label>
-          Location (5S Zone / Circle / Equipment)
-        </label>
-
-        <input
-          type="text"
-          id="location"
-          placeholder="e.g. Assembly Line-2 / Zone B"
-        />
-
+        <label>Location (5S Zone / Circle / Equipment)</label>
+        <input type="text" id="location" placeholder="e.g. Assembly Line-2 / Zone B" />
       </div>
-
 
       <div class="date-row">
-
         <div class="date-box">
-
-          <label>
-            Started On
-          </label>
-
-          <input
-            type="date"
-            id="startedOn"
-          />
-
+          <label>Started On</label>
+          <input type="date" id="startedOn" />
         </div>
-
-
         <div class="date-box">
+          <label>Completed On</label>
+          <input type="date" id="completedOn" />
+        </div>
+      </div>
 
-          <label>
-            Completed On
-          </label>
+      <div class="field-card">
+        <label>Leader / Members</label>
+        <textarea id="leaderMembers" placeholder="Leader: Rahim&#10;Members: Karim, Salma..."></textarea>
+      </div>
 
-          <input
-            type="date"
-            id="completedOn"
-          />
+      <div class="field-card">
+        <label>Root Cause Analysis (Why-Why) : Ref No</label>
+        <input type="text" id="rcaRef" placeholder="e.g. RCA-089" style="margin-bottom:8px;" />
+        <textarea id="rcaDetails" class="large" placeholder="1. Why...&#10;2. Why...&#10;Root cause: ..."></textarea>
+      </div>
 
+      <div class="field-card">
+        <label>Background (Before)</label>
+        <textarea id="background" class="large" placeholder="Describe the situation before improvement..."></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Problem Description</label>
+        <textarea id="problem" class="large" placeholder="What was the problem?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Jobs / Impr Carried Out (Work Order Ref)</label>
+        <textarea id="jobs" class="large" placeholder="What actions were taken? Work Order Ref if any..."></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Bench Mark</label>
+        <textarea id="benchmark" class="large" placeholder="e.g. Previous best / Industry standard"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Targets</label>
+        <textarea id="targets" class="large" placeholder="What targets were set?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Results</label>
+        <textarea id="results" class="large" placeholder="What results were achieved?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>After Advantage</label>
+        <textarea id="advantage" class="large" placeholder="What advantages were gained after Kaizen?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Benefit : After Kaizen How Much Gain (Bdt)</label>
+        <textarea id="benefitBdt" class="large" placeholder="e.g. 45,000 BDT / month"></textarea>
+      </div>
+
+      <!-- IMPACT INPUT -->
+      <div class="field-card">
+        <label>Impact on FI (P Q C D S M)</label>
+        <div style="font-size:0.75rem; color:#555; margin-bottom:8px;">
+          Type <b>yes</b> to put ✓ tick mark. Leave empty for no tick.
         </div>
 
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Leader / Members
-        </label>
-
-        <textarea
-          id="leaderMembers"
-          placeholder="Leader: Rahim&#10;Members: Karim, Salma..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Root Cause Analysis (Why-Why) : Ref No
-        </label>
-
-        <input
-          type="text"
-          id="rcaRef"
-          placeholder="e.g. RCA-089"
-          style="margin-bottom:8px;"
-        />
-
-        <textarea
-          id="rcaDetails"
-          class="large"
-          placeholder="1. Why...&#10;2. Why...&#10;Root cause: ..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Background (Before)
-        </label>
-
-        <textarea
-          id="background"
-          class="large"
-          placeholder="Describe the situation before improvement..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Problem Description
-        </label>
-
-        <textarea
-          id="problem"
-          class="large"
-          placeholder="What was the problem?"
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Jobs / Impr Carried Out (Work Order Ref)
-        </label>
-
-        <textarea
-          id="jobs"
-          class="large"
-          placeholder="What actions were taken? Work Order Ref if any..."
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Bench Mark
-        </label>
-
-        <textarea
-          id="benchmark"
-          class="large"
-          placeholder="e.g. Previous best / Industry standard"
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Targets
-        </label>
-
-        <textarea
-          id="targets"
-          class="large"
-          placeholder="What targets were set?"
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Results
-        </label>
-
-        <textarea
-          id="results"
-          class="large"
-          placeholder="What results were achieved?"
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          After Advantage
-        </label>
-
-        <textarea
-          id="advantage"
-          class="large"
-          placeholder="What advantages were gained after Kaizen?"
-        ></textarea>
-
-      </div>
-
-
-      <div class="field-card">
-
-        <label>
-          Benefit : After Kaizen How Much Gain (Bdt)
-        </label>
-
-        <textarea
-          id="benefitBdt"
-          class="large"
-          placeholder="e.g. 45,000 BDT / month"
-        ></textarea>
-
-      </div>
-
-
-      <!-- =====================================================
-           IMPACT INPUT
-           ===================================================== -->
-
-      <div class="field-card">
-
-        <label>
-          Impact on FI (P Q C D S M)
-        </label>
-
-        <div
-          style="
-            font-size:0.75rem;
-            color:#555;
-            margin-bottom:8px;
-          "
-        >
-          Type <b>yes</b> to put ✓ tick mark.
-          Leave empty for no tick.
-        </div>
-
-
-        <div
-          style="
-            display:grid;
-            grid-template-columns:28px 50px 1fr 50px;
-            gap:6px;
-            align-items:center;
-            font-size:0.82rem;
-          "
-        >
-
+        <div style="display:grid; grid-template-columns:28px 50px 1fr 50px; gap:6px; align-items:center; font-size:0.82rem;">
           <div></div>
+          <div style="font-weight:700; text-align:center;">Tick</div>
+          <div style="font-weight:700;">FI</div>
+          <div style="font-weight:700; text-align:center;">Tick</div>
 
-          <div
-            style="
-              font-weight:700;
-              text-align:center;
-            "
-          >
-            Tick
-          </div>
+          <div class="impact-row-label">P</div>
+          <input type="text" id="tickP" placeholder="yes" style="text-align:center; padding:6px;">
+          <div style="font-weight:700;">AM</div>
+          <input type="text" id="tickAM" placeholder="yes" style="text-align:center; padding:6px;">
 
-          <div style="font-weight:700;">
-            FI
-          </div>
+          <div class="impact-row-label">Q</div>
+          <input type="text" id="tickQ" placeholder="yes" style="text-align:center; padding:6px;">
+          <div style="font-weight:700;">PM</div>
+          <input type="text" id="tickPM" placeholder="yes" style="text-align:center; padding:6px;">
 
-          <div
-            style="
-              font-weight:700;
-              text-align:center;
-            "
-          >
-            Tick
-          </div>
+          <div class="impact-row-label">C</div>
+          <input type="text" id="tickC" placeholder="yes" style="text-align:center; padding:6px;">
+          <div style="font-weight:700;">EM</div>
+          <input type="text" id="tickEM" placeholder="yes" style="text-align:center; padding:6px;">
 
+          <div class="impact-row-label">D</div>
+          <input type="text" id="tickD" placeholder="yes" style="text-align:center; padding:6px;">
+          <div style="font-weight:700;">QM</div>
+          <input type="text" id="tickQM" placeholder="yes" style="text-align:center; padding:6px;">
 
-          <div class="impact-row-label">
-            P
-          </div>
+          <div class="impact-row-label">S</div>
+          <input type="text" id="tickS" placeholder="yes" style="text-align:center; padding:6px;">
+          <div style="font-weight:700;">OTPM</div>
+          <input type="text" id="tickOTPM" placeholder="yes" style="text-align:center; padding:6px;">
 
-          <input
-            type="text"
-            id="tickP"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-          <div style="font-weight:700;">
-            AM
-          </div>
-
-          <input
-            type="text"
-            id="tickAM"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-
-          <div class="impact-row-label">
-            Q
-          </div>
-
-          <input
-            type="text"
-            id="tickQ"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-          <div style="font-weight:700;">
-            PM
-          </div>
-
-          <input
-            type="text"
-            id="tickPM"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-
-          <div class="impact-row-label">
-            C
-          </div>
-
-          <input
-            type="text"
-            id="tickC"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-          <div style="font-weight:700;">
-            EM
-          </div>
-
-          <input
-            type="text"
-            id="tickEM"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-
-          <div class="impact-row-label">
-            D
-          </div>
-
-          <input
-            type="text"
-            id="tickD"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-          <div style="font-weight:700;">
-            QM
-          </div>
-
-          <input
-            type="text"
-            id="tickQM"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-
-          <div class="impact-row-label">
-            S
-          </div>
-
-          <input
-            type="text"
-            id="tickS"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-          <div style="font-weight:700;">
-            OTPM
-          </div>
-
-          <input
-            type="text"
-            id="tickOTPM"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-
-          <div class="impact-row-label">
-            M
-          </div>
-
-          <input
-            type="text"
-            id="tickM"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
-          <div style="font-weight:700;">
-            SHE
-          </div>
-
-          <input
-            type="text"
-            id="tickSHE"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
+          <div class="impact-row-label">M</div>
+          <input type="text" id="tickM" placeholder="yes" style="text-align:center; padding:6px;">
+          <div style="font-weight:700;">SHE</div>
+          <input type="text" id="tickSHE" placeholder="yes" style="text-align:center; padding:6px;">
 
           <div></div>
           <div></div>
-
-          <div style="font-weight:700;">
-            T&D
-          </div>
-
-          <input
-            type="text"
-            id="tickTD"
-            placeholder="yes"
-            style="text-align:center; padding:6px;"
-          >
-
+          <div style="font-weight:700;">T&D</div>
+          <input type="text" id="tickTD" placeholder="yes" style="text-align:center; padding:6px;">
         </div>
-
       </div>
 
-
-      <!-- =====================================================
-           HORIZONTAL REPLICATION INPUT
-           ===================================================== -->
-
+      <!-- REPLICATION INPUT -->
       <div class="field-card">
-
-        <label>
-          Horizontal Replication
-        </label>
-
-
-        <div
-          style="
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:8px;
-          "
-        >
-
+        <label>Horizontal Replication</label>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
           <div>
-
-            <label style="font-size:0.75rem;">
-              Area 1
-            </label>
-
-            <input
-              type="text"
-              id="replicationArea1"
-              placeholder="e.g. Stand-17"
-            >
-
+            <label style="font-size:0.75rem;">Area 1</label>
+            <input type="text" id="replicationArea1" placeholder="e.g. Stand-17">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Target Date 1
-            </label>
-
-            <input
-              type="text"
-              id="replicationDate1"
-              placeholder="e.g. May'2026"
-            >
-
+            <label style="font-size:0.75rem;">Target Date 1</label>
+            <input type="text" id="replicationDate1" placeholder="e.g. May'2026">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Area 2
-            </label>
-
-            <input
-              type="text"
-              id="replicationArea2"
-              placeholder="e.g. Stand-16"
-            >
-
+            <label style="font-size:0.75rem;">Area 2</label>
+            <input type="text" id="replicationArea2" placeholder="e.g. Stand-16">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Target Date 2
-            </label>
-
-            <input
-              type="text"
-              id="replicationDate2"
-              placeholder="e.g. April'2026"
-            >
-
+            <label style="font-size:0.75rem;">Target Date 2</label>
+            <input type="text" id="replicationDate2" placeholder="e.g. April'2026">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Area 3
-            </label>
-
-            <input
-              type="text"
-              id="replicationArea3"
-              placeholder="e.g. Stand-15"
-            >
-
+            <label style="font-size:0.75rem;">Area 3</label>
+            <input type="text" id="replicationArea3" placeholder="e.g. Stand-15">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Target Date 3
-            </label>
-
-            <input
-              type="text"
-              id="replicationDate3"
-              placeholder="e.g. April'2026"
-            >
-
+            <label style="font-size:0.75rem;">Target Date 3</label>
+            <input type="text" id="replicationDate3" placeholder="e.g. April'2026">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Area 4
-            </label>
-
-            <input
-              type="text"
-              id="replicationArea4"
-              placeholder="e.g. Stand-13"
-            >
-
+            <label style="font-size:0.75rem;">Area 4</label>
+            <input type="text" id="replicationArea4" placeholder="e.g. Stand-13">
           </div>
-
-
           <div>
-
-            <label style="font-size:0.75rem;">
-              Target Date 4
-            </label>
-
-            <input
-              type="text"
-              id="replicationDate4"
-              placeholder="e.g. May'2026"
-            >
-
+            <label style="font-size:0.75rem;">Target Date 4</label>
+            <input type="text" id="replicationDate4" placeholder="e.g. May'2026">
           </div>
-
         </div>
-
       </div>
 
-
-      <!-- =====================================================
-           RISK INPUT
-           ===================================================== -->
-
+      <!-- RISK INPUT -->
       <div class="field-card">
-
-        <label>
-          Risk Assessment - Demerit / Mitigation
-        </label>
-
-        <textarea
-          id="risk"
-          placeholder="Any risk? How mitigated?"
-        ></textarea>
-
+        <label>Risk Assessment - Demerit / Mitigation</label>
+        <textarea id="risk" placeholder="Any risk? How mitigated?"></textarea>
       </div>
 
-
-      <!-- BEFORE PHOTO -->
-
+      <!-- BEFORE PHOTO INPUT -->
       <div class="field-card">
-
-        <label>
-          Sketch / Photo BEFORE
-        </label>
-
-        <div
-          class="photo-upload"
-          id="beforeUpload"
-          onclick="document.getElementById('beforeInput').click()"
-        >
-
-          <input
-            type="file"
-            id="beforeInput"
-            accept="image/*"
-          />
-
-          <div class="photo-label">
-            Tap to upload BEFORE photo
-          </div>
-
+        <label>Sketch / Photo BEFORE</label>
+        <div class="photo-upload" id="beforeUpload" onclick="document.getElementById('beforeInput').click()">
+          <input type="file" id="beforeInput" accept="image/*" />
+          <div class="photo-label">Tap to upload BEFORE photo</div>
         </div>
-
       </div>
 
-
-      <!-- AFTER PHOTO -->
-
+      <!-- AFTER PHOTO INPUT -->
       <div class="field-card">
-
-        <label>
-          Sketch / Photo AFTER
-        </label>
-
-        <div
-          class="photo-upload"
-          id="afterUpload"
-          onclick="document.getElementById('afterInput').click()"
-        >
-
-          <input
-            type="file"
-            id="afterInput"
-            accept="image/*"
-          />
-
-          <div class="photo-label">
-            Tap to upload AFTER photo
-          </div>
-
+        <label>Sketch / Photo AFTER</label>
+        <div class="photo-upload" id="afterUpload" onclick="document.getElementById('afterInput').click()">
+          <input type="file" id="afterInput" accept="image/*" />
+          <div class="photo-label">Tap to upload AFTER photo</div>
         </div>
-
       </div>
-
     </div>
 
-
-    <!-- =====================================================
-         PREVIEW
-         ===================================================== -->
-
+    <!-- PREVIEW PANEL -->
     <div class="preview-panel">
-
       <div class="preview-wrapper">
-
         <div id="kaizen-form">
-
           <table>
-
-            <!-- =================================================
-                 TITLE
-                 ================================================= -->
-
+            <!-- ROW 1: HEADER & REF -->
             <tr>
-
               <td colspan="4" class="form-title">
                 KAIZEN FORM
               </td>
-
               <td colspan="2" style="font-size:11px;">
-
-                <span class="field-label">
-                  Project Ref /Description :
-                </span>
-
+                <span class="field-label">Project Ref /Description :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-projectRef"
-                ></span>
-
+                <span class="field-value" id="pv-projectRef"></span>
               </td>
-
             </tr>
 
-
-            <!-- =================================================
-                 TOP INFORMATION
-                 ================================================= -->
-
+            <!-- ROW 2: PHOTO BEFORE HEADER -->
             <tr>
-
               <td style="width:16%; height:48px;">
-
-                <span class="field-label">
-                  Theme/loss category :
-                </span>
-
+                <span class="field-label">Theme/loss category :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-theme"
-                ></span>
-
+                <span class="field-value" id="pv-theme"></span>
               </td>
-
-
               <td style="width:16%; height:48px;">
-
-                <span class="field-label">
-                  Location ( 5S Zone/Circle /Equipment ):
-                </span>
-
+                <span class="field-label">Location ( 5S Zone/Circle /Equipment ):</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-location"
-                ></span>
-
+                <span class="field-value" id="pv-location"></span>
               </td>
-
-
               <td style="width:12%; padding:0;">
-
-                <table
-                  style="
-                    width:100%;
-                    border-collapse:collapse;
-                    height:100%;
-                  "
-                >
-
+                <table style="width:100%; border-collapse:collapse; height:100%;">
                   <tr>
-
-                    <td
-                      style="
-                        border:none;
-                        border-bottom:1.5px solid #111;
-                        height:24px;
-                        padding:3px 5px;
-                      "
-                    >
-
-                      <span class="field-label">
-                        Started On :
-                      </span>
-
-                      <span
-                        class="field-value"
-                        id="pv-startedOn"
-                      ></span>
-
+                    <td style="border:none; border-bottom:1.5px solid #111; height:24px; padding:3px 5px;">
+                      <span class="field-label">Started On :</span>
+                      <span class="field-value" id="pv-startedOn"></span>
                     </td>
-
                   </tr>
-
-
                   <tr>
-
-                    <td
-                      style="
-                        border:none;
-                        height:24px;
-                        padding:3px 5px;
-                      "
-                    >
-
-                      <span class="field-label">
-                        Completed On :
-                      </span>
-
-                      <span
-                        class="field-value"
-                        id="pv-completedOn"
-                      ></span>
-
+                    <td style="border:none; height:24px; padding:3px 5px;">
+                      <span class="field-label">Completed On :</span>
+                      <span class="field-value" id="pv-completedOn"></span>
                     </td>
-
                   </tr>
-
                 </table>
-
               </td>
-
-
-              <td
-                colspan="3"
-                rowspan="2"
-                class="photo-box"
-                id="pv-beforeBox"
-              >
-
-                <div class="placeholder">
-                  SKETCH/ PHOTO BEFORE
-                </div>
-
+              <td colspan="3" class="photo-header-cell">
+                SKETCH / PHOTO BEFORE
               </td>
-
             </tr>
 
-
-            <!-- =================================================
-                 LEADER / RCA
-                 ================================================= -->
-
+            <!-- ROW 3: PHOTO BEFORE IMAGE BOX -->
             <tr>
-
               <td>
-
-                <span class="field-label">
-                  Leader/Members :
-                </span>
-
+                <span class="field-label">Leader/Members :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-leaderMembers"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-leaderMembers" style="white-space:pre-wrap;"></span>
               </td>
-
-
-              <td
-                colspan="2"
-                style="min-height:80px;"
-              >
-
-                <span class="field-label">
-                  Root Cause Analysis (Why-Why) : Ref No -
-                </span>
-
-                <span
-                  class="field-value"
-                  id="pv-rcaRef"
-                ></span>
-
+              <td colspan="2" style="min-height:80px;">
+                <span class="field-label">Root Cause Analysis (Why-Why) : Ref No -</span>
+                <span class="field-value" id="pv-rcaRef"></span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-rcaDetails"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-rcaDetails" style="white-space:pre-wrap;"></span>
               </td>
-
+              <td colspan="3" rowspan="2" class="photo-box" id="pv-beforeBox">
+                <div class="placeholder">PHOTO BEFORE</div>
+              </td>
             </tr>
 
-
-            <!-- =================================================
-                 BACKGROUND / PROBLEM
-                 ================================================= -->
-
+            <!-- ROW 4: BACKGROUND & PROBLEM -->
             <tr>
-
-              <td
-                class="big-cell"
-                style="min-height:100px;"
-              >
-
-                <span class="field-label">
-                  Background ( Before ) :
-                </span>
-
+              <td class="big-cell" style="min-height:100px;">
+                <span class="field-label">Background ( Before ) :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-background"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-background" style="white-space:pre-wrap;"></span>
               </td>
-
-
-              <td
-                colspan="2"
-                class="big-cell"
-                style="min-height:100px;"
-              >
-
-                <span class="field-label">
-                  Problem Description:
-                </span>
-
+              <td colspan="2" class="big-cell" style="min-height:100px;">
+                <span class="field-label">Problem Description:</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-problem"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-problem" style="white-space:pre-wrap;"></span>
               </td>
-
-
-              <td
-                colspan="3"
-                rowspan="4"
-                class="photo-box"
-                id="pv-afterBox"
-              >
-
-                <div class="placeholder">
-                  SKETCH/ PHOTO AFTER
-                </div>
-
-              </td>
-
             </tr>
 
-
-            <!-- =================================================
-                 JOBS
-                 ================================================= -->
-
+            <!-- ROW 5: PHOTO AFTER HEADER -->
             <tr>
-
-              <td
-                rowspan="3"
-                class="big-cell"
-                style="min-height:120px;"
-              >
-
-                <span class="field-label">
-                  Jobs /Impr Carried Out ( WorkOrder Ref ) :
-                </span>
-
+              <td rowspan="4" class="big-cell" style="min-height:160px;">
+                <span class="field-label">Jobs /Impr Carried Out ( WorkOrder Ref ) :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-jobs"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-jobs" style="white-space:pre-wrap;"></span>
               </td>
-
-
               <td colspan="2">
-
-                <span class="field-label">
-                  Bench Mark :
-                </span>
-
-                <span
-                  class="field-value"
-                  id="pv-benchmark"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-label">Bench Mark :</span>
+                <span class="field-value" id="pv-benchmark" style="white-space:pre-wrap;"></span>
               </td>
-
+              <td colspan="3" class="photo-header-cell">
+                SKETCH / PHOTO AFTER
+              </td>
             </tr>
 
-
-            <!-- =================================================
-                 TARGETS
-                 ================================================= -->
-
+            <!-- ROW 6: PHOTO AFTER IMAGE BOX (Spans down to Risk Assessment) -->
             <tr>
-
-              <td
-                colspan="2"
-                style="min-height:50px;"
-              >
-
-                <span class="field-label">
-                  Targets :
-                </span>
-
+              <td colspan="2" style="min-height:50px;">
+                <span class="field-label">Targets :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-targets"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-targets" style="white-space:pre-wrap;"></span>
               </td>
-
+              <td colspan="3" rowspan="4" class="photo-box" id="pv-afterBox">
+                <div class="placeholder">PHOTO AFTER</div>
+              </td>
             </tr>
 
-
-            <!-- =================================================
-                 RESULTS
-                 ================================================= -->
-
+            <!-- ROW 7: RESULTS -->
             <tr>
-
-              <td
-                colspan="2"
-                style="min-height:50px;"
-              >
-
-                <span class="field-label">
-                  Results :
-                </span>
-
+              <td colspan="2" style="min-height:50px;">
+                <span class="field-label">Results :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-results"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-results" style="white-space:pre-wrap;"></span>
               </td>
-
             </tr>
 
-
-            <!-- =================================================
-                 ADVANTAGE / BENEFIT
-                 ================================================= -->
-
+            <!-- ROW 8: ADVANTAGE & BENEFIT -->
             <tr>
+              <td colspan="2" style="min-height:55px;">
+                <span class="field-label">Benefit :After Kaizen How Much Gain (Bdt):</span>
+                <br>
+                <span class="field-value" id="pv-benefitBdt" style="white-space:pre-wrap;"></span>
+              </td>
+            </tr>
 
+            <!-- ROW 9: AFTER ADVANTAGE & IMPACT TABLE -->
+            <tr>
               <td style="min-height:55px;">
-
-                <span class="field-label">
-                  After Advantage :
-                </span>
-
+                <span class="field-label">After Advantage :</span>
                 <br>
-
-                <span
-                  class="field-value"
-                  id="pv-advantage"
-                  style="white-space:pre-wrap;"
-                ></span>
-
+                <span class="field-value" id="pv-advantage" style="white-space:pre-wrap;"></span>
               </td>
-
-
-              <td
-                colspan="2"
-                style="min-height:55px;"
-              >
-
-                <span class="field-label">
-                  Benefit :After Kaizen How Much Gain (Bdt):
-                </span>
-
-                <br>
-
-                <span
-                  class="field-value"
-                  id="pv-benefitBdt"
-                  style="white-space:pre-wrap;"
-                ></span>
-
-              </td>
-
-
-              <td colspan="3">
-
-                <!-- EMPTY SPACE ABOVE FINAL SECTION -->
-
-              </td>
-
-            </tr>
-
-
-            <!-- =================================================
-                 IMPACT TABLE
-                 ================================================= -->
-
-            <tr>
-
-              <td
-                colspan="3"
-                style="padding:0;"
-              >
-
+              <td colspan="2" style="padding:0;">
                 <table class="impact-table">
-
                   <tr>
-
-                    <th style="width:45px; font-size:9px;">
-                      Impact on
-                    </th>
-
-                    <th style="width:22px;">
-                      ✓
-                    </th>
-
-                    <th style="width:38px;">
-                      FI
-                    </th>
-
-                    <th style="width:22px;">
-                      ✓
-                    </th>
-
+                    <th style="width:45px; font-size:9px;">Impact on</th>
+                    <th style="width:22px;">✓</th>
+                    <th style="width:38px;">FI</th>
+                    <th style="width:22px;">✓</th>
                   </tr>
-
-
                   <tr>
-
-                    <td style="font-weight:700;">
-                      P
-                    </td>
-
+                    <td style="font-weight:700;">P</td>
                     <td id="pv-tickP"></td>
-
-                    <td style="font-weight:700;">
-                      AM
-                    </td>
-
+                    <td style="font-weight:700;">AM</td>
                     <td id="pv-tickAM"></td>
-
                   </tr>
-
-
                   <tr>
-
-                    <td style="font-weight:700;">
-                      Q
-                    </td>
-
+                    <td style="font-weight:700;">Q</td>
                     <td id="pv-tickQ"></td>
-
-                    <td style="font-weight:700;">
-                      PM
-                    </td>
-
+                    <td style="font-weight:700;">PM</td>
                     <td id="pv-tickPM"></td>
-
                   </tr>
-
-
                   <tr>
-
-                    <td style="font-weight:700;">
-                      C
-                    </td>
-
+                    <td style="font-weight:700;">C</td>
                     <td id="pv-tickC"></td>
-
-                    <td style="font-weight:700;">
-                      EM
-                    </td>
-
+                    <td style="font-weight:700;">EM</td>
                     <td id="pv-tickEM"></td>
-
                   </tr>
-
-
                   <tr>
-
-                    <td style="font-weight:700;">
-                      D
-                    </td>
-
+                    <td style="font-weight:700;">D</td>
                     <td id="pv-tickD"></td>
-
-                    <td style="font-weight:700;">
-                      QM
-                    </td>
-
+                    <td style="font-weight:700;">QM</td>
                     <td id="pv-tickQM"></td>
-
                   </tr>
-
-
                   <tr>
-
-                    <td style="font-weight:700;">
-                      S
-                    </td>
-
+                    <td style="font-weight:700;">S</td>
                     <td id="pv-tickS"></td>
-
-                    <td style="font-weight:700;">
-                      OTPM
-                    </td>
-
+                    <td style="font-weight:700;">OTPM</td>
                     <td id="pv-tickOTPM"></td>
-
                   </tr>
-
-
                   <tr>
-
-                    <td style="font-weight:700;">
-                      M
-                    </td>
-
+                    <td style="font-weight:700;">M</td>
                     <td id="pv-tickM"></td>
-
-                    <td style="font-weight:700;">
-                      SHE
-                    </td>
-
+                    <td style="font-weight:700;">SHE</td>
                     <td id="pv-tickSHE"></td>
-
                   </tr>
-
-
                   <tr>
-
                     <td></td>
-
                     <td></td>
-
-                    <td style="font-weight:700;">
-                      T&D
-                    </td>
-
+                    <td style="font-weight:700;">T&D</td>
                     <td id="pv-tickTD"></td>
-
                   </tr>
-
                 </table>
-
               </td>
-
-
-              <td colspan="3">
-
-                <!-- Empty right side -->
-
-              </td>
-
             </tr>
 
-
-            <!-- =================================================
-                 FINAL ROW
-                 
-                 THIS IS THE IMPORTANT PART
-
-                 LEFT  = HORIZONTAL REPLICATION
-                 RIGHT = RISK ASSESSMENT
-
-                 BOTH START AT EXACTLY THE SAME HEIGHT
-                 ================================================= -->
-
+            <!-- ROW 10: BOTTOM SECTION (HORIZONTAL REPLICATION + RISK ASSESSMENT) -->
             <tr>
-
-
-              <!-- =================================================
-                   LEFT HALF — HORIZONTAL REPLICATION
-                   ================================================= -->
-
-              <td
-                colspan="3"
-                class="final-section-cell"
-              >
-
+              <td colspan="3" class="final-section-cell">
                 <table class="replication-table">
-
-                  <!-- Main Header -->
-
                   <tr>
-
-                    <th
-                      colspan="2"
-                      class="replication-main-header"
-                    >
+                    <th colspan="2" class="replication-main-header">
                       Horizontal Replication
                     </th>
-
                   </tr>
-
-
-                  <!-- Column Headers -->
-
                   <tr>
-
-                    <th class="replication-column-header">
-                      Area
-                    </th>
-
-                    <th class="replication-column-header">
-                      Target Date
-                    </th>
-
+                    <th class="replication-column-header">Area</th>
+                    <th class="replication-column-header">Target Date</th>
                   </tr>
-
-
-                  <!-- Row 1 -->
-
                   <tr>
-
-                    <td id="pv-replicationArea1">
-                    </td>
-
-                    <td id="pv-replicationDate1">
-                    </td>
-
+                    <td id="pv-replicationArea1"></td>
+                    <td id="pv-replicationDate1"></td>
                   </tr>
-
-
-                  <!-- Row 2 -->
-
                   <tr>
-
-                    <td id="pv-replicationArea2">
-                    </td>
-
-                    <td id="pv-replicationDate2">
-                    </td>
-
+                    <td id="pv-replicationArea2"></td>
+                    <td id="pv-replicationDate2"></td>
                   </tr>
-
-
-                  <!-- Row 3 -->
-
                   <tr>
-
-                    <td id="pv-replicationArea3">
-                    </td>
-
-                    <td id="pv-replicationDate3">
-                    </td>
-
+                    <td id="pv-replicationArea3"></td>
+                    <td id="pv-replicationDate3"></td>
                   </tr>
-
-
-                  <!-- Row 4 -->
-
                   <tr>
-
-                    <td id="pv-replicationArea4">
-                    </td>
-
-                    <td id="pv-replicationDate4">
-                    </td>
-
+                    <td id="pv-replicationArea4"></td>
+                    <td id="pv-replicationDate4"></td>
                   </tr>
-
                 </table>
-
               </td>
 
-
-              <!-- =================================================
-                   RIGHT HALF — RISK ASSESSMENT
-                   ================================================= -->
-
-              <td
-                colspan="3"
-                class="risk-assessment-cell"
-              >
-
+              <td colspan="3" class="risk-assessment-cell">
                 <div class="risk-assessment-title">
                   RISK ASSESSMENT - Demerit / MITIGATION
                 </div>
-
-                <div
-                  class="risk-assessment-content"
-                  id="pv-risk"
-                ></div>
-
+                <div class="risk-assessment-content" id="pv-risk"></div>
               </td>
-
             </tr>
 
-
           </table>
-
         </div>
-
       </div>
 
-
-      <!-- =====================================================
-           BUTTONS
-           ===================================================== -->
-
+      <!-- ACTION BUTTONS -->
       <div class="actions">
-
-        <button
-          class="btn btn-download"
-          id="downloadBtn"
-          onclick="downloadImage()"
-        >
+        <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">
           ⬇ DOWNLOAD IMAGE
         </button>
-
-
-        <button
-          class="btn btn-whatsapp"
-          id="whatsappBtn"
-          onclick="shareWhatsApp()"
-        >
+        <button class="btn btn-whatsapp" id="whatsappBtn" onclick="shareWhatsApp()">
           SHARE TO WHATSAPP
         </button>
-
       </div>
 
-
       <p class="note">
-        On mobile, “Share to WhatsApp” opens your device’s share sheet.
-        If unavailable, download the image and attach it manually.
+        On mobile, “Share to WhatsApp” opens your device’s share sheet. If unavailable, download the image and attach it manually.
       </p>
-
     </div>
-
   </div>
 
-
-  <!-- =========================================================
-       JAVASCRIPT
-       ========================================================= -->
-
+  <!-- JAVASCRIPT -->
   <script>
-
-
-    /* =========================================================
-       NORMAL FIELD BINDINGS
-       ========================================================= */
-
     const bindings = [
-
       ['projectRef', 'pv-projectRef'],
       ['theme', 'pv-theme'],
       ['location', 'pv-location'],
@@ -1983,128 +932,57 @@
       ['advantage', 'pv-advantage'],
       ['benefitBdt', 'pv-benefitBdt'],
       ['risk', 'pv-risk']
-
     ];
-
 
     bindings.forEach(([inputId, previewId]) => {
-
-      const input =
-        document.getElementById(inputId);
-
-      const preview =
-        document.getElementById(previewId);
-
-
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
       if (!input || !preview) return;
 
-
       const update = () => {
-
         let val = input.value;
-
-
-        if (
-          input.type === 'date' &&
-          val
-        ) {
-
-          const [y, m, d] =
-            val.split('-');
-
-          val =
-            `${d}-${m}-${y}`;
-
+        if (input.type === 'date' && val) {
+          const [y, m, d] = val.split('-');
+          val = `${d}-${m}-${y}`;
         }
-
-
         preview.textContent = val;
-
       };
 
-
-      input.addEventListener(
-        'input',
-        update
-      );
-
-      input.addEventListener(
-        'change',
-        update
-      );
-
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
     });
 
-
-    /* =========================================================
-       HORIZONTAL REPLICATION
-       ========================================================= */
-
     const replicationBindings = [
-
       ['replicationArea1', 'pv-replicationArea1'],
       ['replicationDate1', 'pv-replicationDate1'],
-
       ['replicationArea2', 'pv-replicationArea2'],
       ['replicationDate2', 'pv-replicationDate2'],
-
       ['replicationArea3', 'pv-replicationArea3'],
       ['replicationDate3', 'pv-replicationDate3'],
-
       ['replicationArea4', 'pv-replicationArea4'],
       ['replicationDate4', 'pv-replicationDate4']
-
     ];
 
+    replicationBindings.forEach(([inputId, previewId]) => {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      if (!input || !preview) return;
 
-    replicationBindings.forEach(
-      ([inputId, previewId]) => {
+      const update = () => {
+        preview.textContent = input.value;
+      };
 
-        const input =
-          document.getElementById(inputId);
-
-        const preview =
-          document.getElementById(previewId);
-
-
-        if (!input || !preview) return;
-
-
-        const update = () => {
-
-          preview.textContent =
-            input.value;
-
-        };
-
-
-        input.addEventListener(
-          'input',
-          update
-        );
-
-        input.addEventListener(
-          'change',
-          update
-        );
-
-      }
-    );
-
-
-    /* =========================================================
-       TICK MARKS
-       ========================================================= */
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
+    });
 
     const tickMap = [
-
       ['tickP', 'pv-tickP'],
       ['tickQ', 'pv-tickQ'],
       ['tickC', 'pv-tickC'],
       ['tickD', 'pv-tickD'],
       ['tickS', 'pv-tickS'],
       ['tickM', 'pv-tickM'],
-
       ['tickAM', 'pv-tickAM'],
       ['tickPM', 'pv-tickPM'],
       ['tickEM', 'pv-tickEM'],
@@ -2112,373 +990,119 @@
       ['tickOTPM', 'pv-tickOTPM'],
       ['tickSHE', 'pv-tickSHE'],
       ['tickTD', 'pv-tickTD']
-
     ];
 
+    tickMap.forEach(([inputId, previewId]) => {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      if (!input || !preview) return;
 
-    tickMap.forEach(
-      ([inputId, previewId]) => {
-
-        const input =
-          document.getElementById(inputId);
-
-        const preview =
-          document.getElementById(previewId);
-
-
-        if (!input || !preview) return;
-
-
-        const update = () => {
-
-          const val =
-            (input.value || '')
-            .trim()
-            .toLowerCase();
-
-
-          if (
-            val === 'yes' ||
-            val === 'y' ||
-            val === '✓' ||
-            val === 'tick'
-          ) {
-
-            preview.textContent =
-              '✓';
-
-          } else {
-
-            preview.textContent =
-              '';
-
-          }
-
-        };
-
-
-        input.addEventListener(
-          'input',
-          update
-        );
-
-        input.addEventListener(
-          'change',
-          update
-        );
-
-      }
-    );
-
-
-    /* =========================================================
-       PHOTO UPLOAD
-       ========================================================= */
-
-    function setupPhoto(
-      inputId,
-      uploadDivId,
-      previewBoxId
-    ) {
-
-      const input =
-        document.getElementById(inputId);
-
-      const uploadDiv =
-        document.getElementById(uploadDivId);
-
-      const previewBox =
-        document.getElementById(previewBoxId);
-
-
-      input.addEventListener(
-        'change',
-        function handler(e) {
-
-          const file =
-            e.target.files[0];
-
-
-          if (!file) return;
-
-
-          const reader =
-            new FileReader();
-
-
-          reader.onload = (ev) => {
-
-            uploadDiv.classList.add(
-              'has-image'
-            );
-
-
-            uploadDiv.innerHTML = `
-              <img
-                src="${ev.target.result}"
-                alt="preview"
-              />
-
-              <input
-                type="file"
-                id="${inputId}"
-                accept="image/*"
-                style="display:none"
-              />
-            `;
-
-
-            document
-              .getElementById(inputId)
-              .addEventListener(
-                'change',
-                handler
-              );
-
-
-            previewBox.innerHTML = `
-              <img
-                src="${ev.target.result}"
-                alt="photo"
-              />
-            `;
-
-          };
-
-
-          reader.readAsDataURL(file);
-
+      const update = () => {
+        const val = (input.value || '').trim().toLowerCase();
+        if (['yes', 'y', '✓', 'tick', '1', 'x', 'ok'].includes(val)) {
+          preview.textContent = '✓';
+        } else {
+          preview.textContent = '';
         }
-      );
+      };
 
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
+    });
+
+    function setupPhoto(inputId, uploadDivId, previewBoxId) {
+      const input = document.getElementById(inputId);
+      const uploadDiv = document.getElementById(uploadDivId);
+      const previewBox = document.getElementById(previewBoxId);
+
+      input.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          uploadDiv.classList.add('has-image');
+          let img = uploadDiv.querySelector('img');
+          if (!img) {
+            img = document.createElement('img');
+            uploadDiv.appendChild(img);
+          }
+          img.src = ev.target.result;
+          previewBox.innerHTML = `<img src="${ev.target.result}" alt="photo" />`;
+        };
+        reader.readAsDataURL(file);
+      });
     }
 
-
-    setupPhoto(
-      'beforeInput',
-      'beforeUpload',
-      'pv-beforeBox'
-    );
-
-
-    setupPhoto(
-      'afterInput',
-      'afterUpload',
-      'pv-afterBox'
-    );
-
-
-    /* =========================================================
-       DOWNLOAD IMAGE
-       ========================================================= */
+    setupPhoto('beforeInput', 'beforeUpload', 'pv-beforeBox');
+    setupPhoto('afterInput', 'afterUpload', 'pv-afterBox');
 
     async function downloadImage() {
-
-      const btn =
-        document.getElementById(
-          'downloadBtn'
-        );
-
-
+      const btn = document.getElementById('downloadBtn');
       btn.disabled = true;
-
-      btn.textContent =
-        'Generating...';
-
+      btn.textContent = 'Generating...';
 
       try {
+        const form = document.getElementById('kaizen-form');
+        const canvas = await html2canvas(form, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#ffffff',
+          logging: false
+        });
 
-        const form =
-          document.getElementById(
-            'kaizen-form'
-          );
-
-
-        const canvas =
-          await html2canvas(
-            form,
-            {
-
-              scale: 2,
-
-              useCORS: true,
-
-              backgroundColor:
-                '#ffffff',
-
-              logging: false
-
-            }
-          );
-
-
-        const link =
-          document.createElement('a');
-
-
-        link.download =
-          `Kaizen_Form_${new Date()
-            .toISOString()
-            .slice(0, 10)}.png`;
-
-
-        link.href =
-          canvas.toDataURL(
-            'image/png'
-          );
-
-
+        const link = document.createElement('a');
+        link.download = `Kaizen_Form_${new Date().toISOString().slice(0, 10)}.png`;
+        link.href = canvas.toDataURL('image/png');
         link.click();
-
-
       } catch (err) {
-
-        alert(
-          'Error generating image. Please try again.'
-        );
-
+        alert('Error generating image. Please try again.');
       }
-
 
       btn.disabled = false;
-
-      btn.textContent =
-        '⬇ DOWNLOAD IMAGE';
-
+      btn.textContent = '⬇ DOWNLOAD IMAGE';
     }
-
-
-    /* =========================================================
-       SHARE
-       ========================================================= */
 
     async function shareWhatsApp() {
-
-      const btn =
-        document.getElementById(
-          'whatsappBtn'
-        );
-
-
+      const btn = document.getElementById('whatsappBtn');
       btn.disabled = true;
-
-      btn.textContent =
-        'Preparing...';
-
+      btn.textContent = 'Preparing...';
 
       try {
+        const form = document.getElementById('kaizen-form');
+        const canvas = await html2canvas(form, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#ffffff',
+          logging: false
+        });
 
-        const form =
-          document.getElementById(
-            'kaizen-form'
-          );
+        canvas.toBlob(async (blob) => {
+          const file = new File([blob], 'Kaizen_Form.png', { type: 'image/png' });
 
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: 'Kaizen Form',
+              text: 'Kaizen Form'
+            });
+          } else {
+            const link = document.createElement('a');
+            link.download = 'Kaizen_Form.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            alert('Image downloaded. Please attach it manually in WhatsApp.');
+          }
 
-        const canvas =
-          await html2canvas(
-            form,
-            {
-
-              scale: 2,
-
-              useCORS: true,
-
-              backgroundColor:
-                '#ffffff',
-
-              logging: false
-
-            }
-          );
-
-
-        canvas.toBlob(
-          async (blob) => {
-
-            const file =
-              new File(
-                [blob],
-                'Kaizen_Form.png',
-                {
-                  type: 'image/png'
-                }
-              );
-
-
-            if (
-              navigator.canShare &&
-              navigator.canShare({
-                files: [file]
-              })
-            ) {
-
-              await navigator.share({
-
-                files: [file],
-
-                title:
-                  'Kaizen Form',
-
-                text:
-                  'Kaizen Form'
-
-              });
-
-            } else {
-
-              const link =
-                document.createElement(
-                  'a'
-                );
-
-
-              link.download =
-                'Kaizen_Form.png';
-
-
-              link.href =
-                canvas.toDataURL(
-                  'image/png'
-                );
-
-
-              link.click();
-
-
-              alert(
-                'Image downloaded. Please attach it manually in WhatsApp.'
-              );
-
-            }
-
-
-            btn.disabled = false;
-
-            btn.textContent =
-              'SHARE TO WHATSAPP';
-
-          },
-          'image/png'
-        );
-
-
+          btn.disabled = false;
+          btn.textContent = 'SHARE TO WHATSAPP';
+        }, 'image/png');
       } catch (err) {
-
-        alert(
-          'Sharing failed. Please download the image and share manually.'
-        );
-
-
+        alert('Sharing failed. Please download the image and share manually.');
         btn.disabled = false;
-
-        btn.textContent =
-          'SHARE TO WHATSAPP';
-
+        btn.textContent = 'SHARE TO WHATSAPP';
       }
-
     }
-
   </script>
-
 </body>
 </html>
