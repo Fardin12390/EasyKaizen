@@ -148,7 +148,7 @@
     }
 
     /* =========================================================
-       CLEAN CSS PIXEL-PERFECT GRID (NO OVERFLOW)
+       CLEAN CSS PIXEL-PERFECT GRID
        ========================================================= */
     #kaizen-form {
       width: 1100px;
@@ -251,7 +251,7 @@
       font-size: 11px;
     }
 
-    /* BOTTOM FI & REPLICATION GRID */
+    /* BOTTOM GRID */
     .bottom-fi-col {
       width: 285px;
       display: flex;
@@ -294,7 +294,6 @@
       background: #fff;
     }
 
-    /* PERFECT RISK BOX */
     .risk-header-fixed {
       height: 40px;
       min-height: 40px;
@@ -433,24 +432,53 @@
         <textarea id="benefitBdt" class="large" placeholder="e.g. Previously grease consumption..."></textarea>
       </div>
 
-      <!-- FI IMPACT -->
+      <!-- FI IMPACT INPUT CARD -->
       <div class="field-card">
-        <label>Impact on FI (Type 'yes' or '1' to check)</label>
-        <div style="display:grid; grid-template-columns:30px 45px 1fr 45px; gap:4px; font-size:0.75rem; align-items:center;">
-          <b>P</b><input type="text" id="tickP" style="padding:3px; text-align:center;">
-          <b>AM</b><input type="text" id="tickAM" style="padding:3px; text-align:center;">
-          <b>Q</b><input type="text" id="tickQ" style="padding:3px; text-align:center;">
-          <b>PM</b><input type="text" id="tickPM" style="padding:3px; text-align:center;">
-          <b>C</b><input type="text" id="tickC" style="padding:3px; text-align:center;">
-          <b>EM</b><input type="text" id="tickEM" style="padding:3px; text-align:center;">
-          <b>D</b><input type="text" id="tickD" style="padding:3px; text-align:center;">
-          <b>QM</b><input type="text" id="tickQM" style="padding:3px; text-align:center;">
-          <b>S</b><input type="text" id="tickS" style="padding:3px; text-align:center;">
-          <b>OTPM</b><input type="text" id="tickOTPM" style="padding:3px; text-align:center;">
-          <b>M</b><input type="text" id="tickM" style="padding:3px; text-align:center;">
-          <b>SHE</b><input type="text" id="tickSHE" style="padding:3px; text-align:center;">
-          <div></div><div></div>
-          <b>T&D</b><input type="text" id="tickTD" style="padding:3px; text-align:center;">
+        <label>Impact on FI</label>
+        <div style="font-size:0.75rem; color:#666; margin-bottom:8px;">
+          Type <b>yes</b> or <b>1</b> to tick (✓)
+        </div>
+
+        <div style="display: grid; grid-template-columns: 70px 42px 65px 42px; gap: 6px; align-items: center; font-size: 0.82rem;">
+          <div style="font-weight: 800; color: #111;">Impact on</div>
+          <div style="font-weight: 800; text-align: center; color: #111;">✓</div>
+          <div style="font-weight: 800; color: #111;">FI</div>
+          <div style="font-weight: 800; text-align: center; color: #111;">✓</div>
+
+          <div style="font-weight: 700;">P</div>
+          <input type="text" id="tickP" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">AM</div>
+          <input type="text" id="tickAM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">Q</div>
+          <input type="text" id="tickQ" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">PM</div>
+          <input type="text" id="tickPM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">C</div>
+          <input type="text" id="tickC" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">EM</div>
+          <input type="text" id="tickEM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">D</div>
+          <input type="text" id="tickD" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">QM</div>
+          <input type="text" id="tickQM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">S</div>
+          <input type="text" id="tickS" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">OTPM</div>
+          <input type="text" id="tickOTPM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">M</div>
+          <input type="text" id="tickM" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">SHE</div>
+          <input type="text" id="tickSHE" style="padding: 4px; text-align: center;" />
+
+          <div></div>
+          <div></div>
+          <div style="font-weight: 700;">T&D</div>
+          <input type="text" id="tickTD" style="padding: 4px; text-align: center;" />
         </div>
       </div>
 
@@ -691,7 +719,7 @@
               </div>
             </div>
 
-            <!-- RISK ASSESSMENT (PERFECT BOX) -->
+            <!-- RISK ASSESSMENT -->
             <div class="col-right" style="border-left: var(--border-w) solid var(--border-color);">
               <div class="risk-header-fixed">
                 RISK ASSESSMENT - Demerit /<br>MITIGATION
