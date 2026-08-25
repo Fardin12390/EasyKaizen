@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaizen Form Generator</title>
+  <title>My Kaizen — Kaizen Form Generator</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
   <style>
@@ -36,12 +36,19 @@
     }
 
     .logo {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 800;
+      letter-spacing: -0.5px;
     }
 
     .logo span {
       color: var(--accent);
+    }
+
+    .top-bar p {
+      font-size: 0.85rem;
+      opacity: 0.85;
+      margin-top: 3px;
     }
 
     .container {
@@ -349,7 +356,10 @@
 <body>
 
   <div class="top-bar">
-    <div class="logo">Kaizen <span>Form Generator</span></div>
+    <div>
+      <div class="logo">My <span>Kaizen</span></div>
+      <p>fill, preview live, download and share</p>
+    </div>
   </div>
 
   <div class="container">
@@ -433,7 +443,7 @@
         <textarea id="benefitBdt" class="large" placeholder="e.g. Previously grease consumption..."></textarea>
       </div>
 
-      <!-- FI INPUT GRID (NO EXTRA HEADERS OR LABELS) -->
+      <!-- FI INPUT GRID -->
       <div class="field-card">
         <div style="display: grid; grid-template-columns: 50px 45px 55px 45px; gap: 6px; align-items: center; font-size: 0.82rem;">
           <div style="font-weight: 800; font-style: italic; color: #111;">Impact on :</div>
