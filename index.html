@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EasyKaizen — Kaizen Form Generator</title>
+  <title>My Kaizen — Kaizen Form Generator</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     :root {
       --yellow: #FFEB3B;
       --dark-yellow: #FBC02D;
       --black: #1a1a1a;
-      --gray: #333;
-      --border: #222;
-      --light-bg: #f5f5f5;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -32,9 +25,6 @@
       background: #1a1a1a;
       color: white;
       padding: 14px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       border-bottom: 4px solid var(--dark-yellow);
     }
 
@@ -44,14 +34,12 @@
       letter-spacing: -0.5px;
     }
 
-    .logo span {
-      color: var(--dark-yellow);
-    }
+    .logo span { color: var(--dark-yellow); }
 
     .top-bar p {
       font-size: 0.85rem;
-      opacity: 0.8;
-      margin-top: 2px;
+      opacity: 0.85;
+      margin-top: 3px;
     }
 
     .container {
@@ -66,65 +54,33 @@
     .input-panel {
       flex: 1;
       min-width: 340px;
-      max-width: 480px;
+      max-width: 460px;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 14px;
     }
 
-    .section {
+    .field-card {
       background: white;
-      border-radius: 10px;
+      border-radius: 8px;
       border: 1px solid #ddd;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+      padding: 12px 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
     }
 
-    .section-header {
-      background: #f8f8f8;
-      padding: 10px 16px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .section-num {
-      background: var(--dark-yellow);
-      color: #111;
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.8rem;
-      font-weight: 800;
-    }
-
-    .section-body {
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    label {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #444;
+    .field-card label {
       display: block;
-      margin-bottom: 4px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 6px;
     }
 
     input[type="text"],
     input[type="date"],
-    textarea,
-    select {
+    textarea {
       width: 100%;
-      padding: 9px 12px;
+      padding: 9px 11px;
       border: 1px solid #ccc;
       border-radius: 6px;
       font-size: 0.9rem;
@@ -132,32 +88,65 @@
       transition: border 0.2s;
     }
 
-    input:focus, textarea:focus, select:focus {
+    input:focus, textarea:focus {
       outline: none;
       border-color: var(--dark-yellow);
-      box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.25);
+      box-shadow: 0 0 0 3px rgba(251,192,45,0.25);
     }
 
     textarea {
-      min-height: 70px;
       resize: vertical;
+      min-height: 70px;
+    }
+
+    textarea.large {
+      min-height: 110px;
+    }
+
+    .date-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .date-box {
+      flex: 1;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .date-box label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .date-box input {
+      border: none;
+      padding: 4px 0;
+      width: 100%;
+    }
+
+    .date-box input:focus {
+      box-shadow: none;
     }
 
     .photo-upload {
       border: 2px dashed #ccc;
       border-radius: 8px;
-      padding: 18px;
+      padding: 16px;
       text-align: center;
       cursor: pointer;
       background: #fafafa;
-      transition: all 0.2s;
-      position: relative;
-      min-height: 90px;
+      min-height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
       gap: 6px;
+      transition: all 0.2s;
     }
 
     .photo-upload:hover {
@@ -172,14 +161,12 @@
 
     .photo-upload img {
       max-width: 100%;
-      max-height: 120px;
+      max-height: 130px;
       border-radius: 4px;
       object-fit: contain;
     }
 
-    .photo-upload input {
-      display: none;
-    }
+    .photo-upload input { display: none; }
 
     .photo-label {
       font-size: 0.85rem;
@@ -188,19 +175,19 @@
 
     .impact-grid {
       display: grid;
-      grid-template-columns: 40px 1fr;
+      grid-template-columns: 36px 1fr;
       gap: 6px;
       align-items: center;
     }
 
     .impact-grid input {
-      padding: 6px 8px;
+      padding: 7px 9px;
       font-size: 0.85rem;
     }
 
     .impact-row-label {
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: 800;
+      font-size: 0.95rem;
       text-align: center;
     }
 
@@ -219,7 +206,6 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.15);
       overflow: hidden;
       border: 3px solid #222;
-      position: relative;
     }
 
     #kaizen-form {
@@ -228,7 +214,6 @@
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       color: #000;
-      border-collapse: collapse;
       line-height: 1.25;
     }
 
@@ -237,7 +222,7 @@
       border-collapse: collapse;
     }
 
-    #kaizen-form td, #kaizen-form th {
+    #kaizen-form td {
       border: 1.5px solid #111;
       padding: 4px 6px;
       vertical-align: top;
@@ -249,18 +234,16 @@
       text-align: center;
       letter-spacing: 1px;
       padding: 8px !important;
-      background: var(--yellow);
     }
 
     .field-label {
       font-weight: 700;
       font-size: 10px;
-      white-space: nowrap;
     }
 
     .field-value {
       font-size: 11px;
-      min-height: 18px;
+      min-height: 16px;
       word-break: break-word;
     }
 
@@ -269,7 +252,6 @@
       text-align: center;
       vertical-align: middle !important;
       background: #fffde7;
-      position: relative;
     }
 
     .photo-box img {
@@ -284,9 +266,7 @@
       font-weight: 700;
     }
 
-    .big-cell {
-      min-height: 55px;
-    }
+    .big-cell { min-height: 55px; }
 
     .impact-table {
       width: 100%;
@@ -308,8 +288,6 @@
     .actions {
       display: flex;
       gap: 12px;
-      width: 100%;
-      max-width: 900px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -322,9 +300,6 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 8px;
     }
 
     .btn-download {
@@ -332,249 +307,169 @@
       color: white;
     }
 
-    .btn-download:hover {
-      background: #333;
-      transform: translateY(-1px);
-    }
+    .btn-download:hover { background: #333; }
 
     .btn-whatsapp {
       background: var(--dark-yellow);
       color: #111;
     }
 
-    .btn-whatsapp:hover {
-      background: #f9a825;
-      transform: translateY(-1px);
-    }
+    .btn-whatsapp:hover { background: #f9a825; }
 
     .btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      transform: none;
     }
 
     .note {
       font-size: 0.8rem;
       color: #666;
       text-align: center;
-      max-width: 600px;
+      max-width: 560px;
     }
 
     @media (max-width: 1100px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-      }
-      .input-panel {
-        max-width: 100%;
-        width: 100%;
-      }
-      .preview-panel {
-        min-width: 100%;
-      }
-      #kaizen-form {
-        width: 100%;
-        max-width: 900px;
-        transform-origin: top left;
-      }
-    }
-
-    @media (max-width: 700px) {
-      #kaizen-form {
-        font-size: 9px;
-      }
-      .photo-box {
-        height: 140px;
-      }
+      .container { flex-direction: column; align-items: center; }
+      .input-panel { max-width: 100%; width: 100%; }
+      .preview-panel { min-width: 100%; }
+      #kaizen-form { width: 100%; max-width: 900px; }
     }
   </style>
 </head>
 <body>
   <div class="top-bar">
     <div>
-      <div class="logo">EASY<span>KAIZEN</span></div>
-      <p>KAIZEN FORM GENERATOR — fill each section, preview updates live, then download or share.</p>
+      <div class="logo">My <span>Kaizen</span></div>
+      <p>fill, preview live, download and share</p>
     </div>
   </div>
 
   <div class="container">
     <div class="input-panel">
 
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">01</div>
-          HEADER
+      <div class="field-card">
+        <label>Project Ref / Description</label>
+        <input type="text" id="projectRef" placeholder="e.g. KZ-2026-014 / Reduce setup time" />
+      </div>
+
+      <div class="field-card">
+        <label>Theme / Loss Category</label>
+        <input type="text" id="theme" placeholder="e.g. Productivity / Setup loss" />
+      </div>
+
+      <div class="field-card">
+        <label>Location (5S Zone / Circle / Equipment)</label>
+        <input type="text" id="location" placeholder="e.g. Assembly Line-2 / Zone B" />
+      </div>
+
+      <div class="date-row">
+        <div class="date-box">
+          <label>Started On</label>
+          <input type="date" id="startedOn" />
         </div>
-        <div class="section-body">
-          <div>
-            <label>Project Ref / Description</label>
-            <input type="text" id="projectRef" placeholder="e.g. KZ-2026-014 / Reduce setup time" />
-          </div>
-          <div>
-            <label>Theme / Loss Category</label>
-            <input type="text" id="theme" placeholder="e.g. Productivity / Setup loss" />
-          </div>
-          <div>
-            <label>Location (5S Zone / Circle / Equipment)</label>
-            <input type="text" id="location" placeholder="e.g. Assembly Line-2 / Zone B" />
-          </div>
-          <div style="display:flex; gap:10px;">
-            <div style="flex:1">
-              <label>Started On</label>
-              <input type="date" id="startedOn" />
-            </div>
-            <div style="flex:1">
-              <label>Completed On</label>
-              <input type="date" id="completedOn" />
-            </div>
-          </div>
+        <div class="date-box">
+          <label>Completed On</label>
+          <input type="date" id="completedOn" />
         </div>
       </div>
 
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">02</div>
-          TEAM & ROOT CAUSE
-        </div>
-        <div class="section-body">
-          <div>
-            <label>Leader / Members</label>
-            <textarea id="leaderMembers" placeholder="Leader: Rahim&#10;Members: Karim, Salma, ..."></textarea>
-          </div>
-          <div>
-            <label>Root Cause Analysis (Why-Why) Ref No</label>
-            <input type="text" id="rcaRef" placeholder="e.g. RCA-089" />
-          </div>
-          <div>
-            <label>Root Cause / Why-Why details</label>
-            <textarea id="rcaDetails" placeholder="1. Why...&#10;2. Why...&#10;Root cause: ..."></textarea>
-          </div>
+      <div class="field-card">
+        <label>Leader / Members</label>
+        <textarea id="leaderMembers" placeholder="Leader: Rahim&#10;Members: Karim, Salma..."></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Root Cause Analysis (Why-Why) : Ref No</label>
+        <input type="text" id="rcaRef" placeholder="e.g. RCA-089" style="margin-bottom:8px;" />
+        <textarea id="rcaDetails" class="large" placeholder="1. Why...&#10;2. Why...&#10;Root cause: ..."></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Background (Before)</label>
+        <textarea id="background" class="large" placeholder="Describe the situation before improvement..."></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Problem Description</label>
+        <textarea id="problem" class="large" placeholder="What was the problem?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Jobs / Impr Carried Out (Work Order Ref)</label>
+        <textarea id="jobs" class="large" placeholder="What actions were taken? Work Order Ref if any..."></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Bench Mark</label>
+        <textarea id="benchmark" class="large" placeholder="e.g. Previous best / Industry standard"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Targets</label>
+        <textarea id="targets" class="large" placeholder="What targets were set?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Results</label>
+        <textarea id="results" class="large" placeholder="What results were achieved?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>After Advantage</label>
+        <textarea id="advantage" class="large" placeholder="What advantages were gained after Kaizen?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Benefit : After Kaizen How Much Gain (Bdt)</label>
+        <textarea id="benefitBdt" class="large" placeholder="e.g. 45,000 BDT / month"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Impact on (P Q C D S M)</label>
+        <div class="impact-grid">
+          <div class="impact-row-label">P</div>
+          <input type="text" id="impactP" placeholder="Productivity..." />
+          <div class="impact-row-label">Q</div>
+          <input type="text" id="impactQ" placeholder="Quality..." />
+          <div class="impact-row-label">C</div>
+          <input type="text" id="impactC" placeholder="Cost..." />
+          <div class="impact-row-label">D</div>
+          <input type="text" id="impactD" placeholder="Delivery..." />
+          <div class="impact-row-label">S</div>
+          <input type="text" id="impactS" placeholder="Safety..." />
+          <div class="impact-row-label">M</div>
+          <input type="text" id="impactM" placeholder="Morale..." />
         </div>
       </div>
 
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">03</div>
-          PROBLEM & BACKGROUND
-        </div>
-        <div class="section-body">
-          <div>
-            <label>Background (Before)</label>
-            <textarea id="background" placeholder="Describe the situation before improvement..."></textarea>
-          </div>
-          <div>
-            <label>Problem Description</label>
-            <textarea id="problem" placeholder="What was the problem?"></textarea>
-          </div>
+      <div class="field-card">
+        <label>Horizontal Replication - Area</label>
+        <input type="text" id="replicationArea" placeholder="Where else can this be applied?" />
+      </div>
+
+      <div class="field-card">
+        <label>Horizontal Replication - Target Date</label>
+        <input type="date" id="replicationDate" />
+      </div>
+
+      <div class="field-card">
+        <label>Risk Assessment - Demerit / Mitigation</label>
+        <textarea id="risk" placeholder="Any risk? How mitigated?"></textarea>
+      </div>
+
+      <div class="field-card">
+        <label>Sketch / Photo BEFORE</label>
+        <div class="photo-upload" id="beforeUpload" onclick="document.getElementById('beforeInput').click()">
+          <input type="file" id="beforeInput" accept="image/*" />
+          <div class="photo-label">Tap to upload BEFORE photo</div>
         </div>
       </div>
 
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">04</div>
-          IMPROVEMENT DETAILS
-        </div>
-        <div class="section-body">
-          <div>
-            <label>Jobs / Improvement Carried Out (Work Order Ref)</label>
-            <textarea id="jobs" placeholder="What actions were taken? Work Order Ref if any..."></textarea>
-          </div>
-          <div>
-            <label>Bench Mark</label>
-            <input type="text" id="benchmark" placeholder="e.g. Previous best / Industry standard" />
-          </div>
-          <div>
-            <label>Targets</label>
-            <textarea id="targets" placeholder="What targets were set?"></textarea>
-          </div>
-          <div>
-            <label>Results</label>
-            <textarea id="results" placeholder="What results were achieved?"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">05</div>
-          BENEFITS & ADVANTAGE
-        </div>
-        <div class="section-body">
-          <div>
-            <label>After Advantage</label>
-            <textarea id="advantage" placeholder="What advantages were gained after Kaizen?"></textarea>
-          </div>
-          <div>
-            <label>Benefit: After Kaizen How Much Gain (Bdt)</label>
-            <input type="text" id="benefitBdt" placeholder="e.g. 45,000 BDT / month" />
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">06</div>
-          IMPACT ON (P Q C D S M)
-        </div>
-        <div class="section-body">
-          <div class="impact-grid">
-            <div class="impact-row-label">P</div>
-            <input type="text" id="impactP" placeholder="Productivity impact..." />
-            <div class="impact-row-label">Q</div>
-            <input type="text" id="impactQ" placeholder="Quality impact..." />
-            <div class="impact-row-label">C</div>
-            <input type="text" id="impactC" placeholder="Cost impact..." />
-            <div class="impact-row-label">D</div>
-            <input type="text" id="impactD" placeholder="Delivery impact..." />
-            <div class="impact-row-label">S</div>
-            <input type="text" id="impactS" placeholder="Safety impact..." />
-            <div class="impact-row-label">M</div>
-            <input type="text" id="impactM" placeholder="Morale impact..." />
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">07</div>
-          REPLICATION & RISK
-        </div>
-        <div class="section-body">
-          <div>
-            <label>Horizontal Replication - Area</label>
-            <input type="text" id="replicationArea" placeholder="Where else can this be applied?" />
-          </div>
-          <div>
-            <label>Horizontal Replication - Target Date</label>
-            <input type="date" id="replicationDate" />
-          </div>
-          <div>
-            <label>Risk Assessment - Demerit / Mitigation</label>
-            <textarea id="risk" placeholder="Any risk? How mitigated?"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="section-header">
-          <div class="section-num">08</div>
-          PHOTOS
-        </div>
-        <div class="section-body">
-          <div>
-            <label>Sketch / Photo BEFORE</label>
-            <div class="photo-upload" id="beforeUpload" onclick="document.getElementById('beforeInput').click()">
-              <input type="file" id="beforeInput" accept="image/*" />
-              <div class="photo-label">Tap to upload BEFORE photo</div>
-            </div>
-          </div>
-          <div>
-            <label>Sketch / Photo AFTER</label>
-            <div class="photo-upload" id="afterUpload" onclick="document.getElementById('afterInput').click()">
-              <input type="file" id="afterInput" accept="image/*" />
-              <div class="photo-label">Tap to upload AFTER photo</div>
-            </div>
-          </div>
+      <div class="field-card">
+        <label>Sketch / Photo AFTER</label>
+        <div class="photo-upload" id="afterUpload" onclick="document.getElementById('afterInput').click()">
+          <input type="file" id="afterInput" accept="image/*" />
+          <div class="photo-label">Tap to upload AFTER photo</div>
         </div>
       </div>
 
@@ -646,7 +541,7 @@
               </td>
               <td colspan="2">
                 <span class="field-label">Bench Mark :</span>
-                <span class="field-value" id="pv-benchmark"></span>
+                <span class="field-value" id="pv-benchmark" style="white-space:pre-wrap;"></span>
               </td>
             </tr>
             <tr>
@@ -669,7 +564,7 @@
               </td>
               <td colspan="2">
                 <span class="field-label">Benefit :After Kaizen How Much Gain (Bdt):</span><br>
-                <span class="field-value" id="pv-benefitBdt"></span>
+                <span class="field-value" id="pv-benefitBdt" style="white-space:pre-wrap;"></span>
               </td>
               <td colspan="3" style="font-size:10px; vertical-align:top;">
                 <span class="field-label">RISK ASSESSMENT - Demerit / MITIGATION</span><br>
@@ -702,7 +597,7 @@
                   <tr>
                     <td style="font-weight:700;">C</td>
                     <td id="pv-impactC" style="text-align:left; padding-left:6px;"></td>
-                    <td colspan="3" rowspan="4" style="vertical-align:top; text-align:left; font-size:10px;"></td>
+                    <td colspan="3" rowspan="4"></td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">D</td>
@@ -718,24 +613,17 @@
                   </tr>
                 </table>
               </td>
-              <td colspan="3" style="background:#fff9c4; font-size:10px; text-align:center;"></td>
+              <td colspan="3" style="background:#fff9c4;"></td>
             </tr>
           </table>
         </div>
       </div>
 
       <div class="actions">
-        <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">
-          ⬇ DOWNLOAD IMAGE
-        </button>
-        <button class="btn btn-whatsapp" id="whatsappBtn" onclick="shareWhatsApp()">
-          SHARE TO WHATSAPP
-        </button>
+        <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">⬇ DOWNLOAD IMAGE</button>
+        <button class="btn btn-whatsapp" id="whatsappBtn" onclick="shareWhatsApp()">SHARE TO WHATSAPP</button>
       </div>
-      <p class="note">
-        On mobile, “Share to WhatsApp” opens your device’s share sheet — pick WhatsApp from there.
-        If unavailable, download the image and attach it manually.
-      </p>
+      <p class="note">On mobile, “Share to WhatsApp” opens your device’s share sheet. If unavailable, download the image and attach it manually.</p>
     </div>
   </div>
 
@@ -794,7 +682,6 @@
       input.addEventListener('change', function handler(e) {
         const file = e.target.files[0];
         if (!file) return;
-
         const reader = new FileReader();
         reader.onload = (ev) => {
           uploadDiv.classList.add('has-image');
@@ -813,7 +700,6 @@
       const btn = document.getElementById('downloadBtn');
       btn.disabled = true;
       btn.textContent = 'Generating...';
-
       try {
         const form = document.getElementById('kaizen-form');
         const canvas = await html2canvas(form, {
@@ -822,16 +708,13 @@
           backgroundColor: '#FFEB3B',
           logging: false,
         });
-
         const link = document.createElement('a');
         link.download = `Kaizen_Form_${new Date().toISOString().slice(0,10)}.png`;
         link.href = canvas.toDataURL('image/png');
         link.click();
       } catch (err) {
-        console.error(err);
         alert('Error generating image. Please try again.');
       }
-
       btn.disabled = false;
       btn.textContent = '⬇ DOWNLOAD IMAGE';
     }
@@ -840,7 +723,6 @@
       const btn = document.getElementById('whatsappBtn');
       btn.disabled = true;
       btn.textContent = 'Preparing...';
-
       try {
         const form = document.getElementById('kaizen-form');
         const canvas = await html2canvas(form, {
@@ -849,16 +731,10 @@
           backgroundColor: '#FFEB3B',
           logging: false,
         });
-
         canvas.toBlob(async (blob) => {
           const file = new File([blob], 'Kaizen_Form.png', { type: 'image/png' });
-
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({
-              files: [file],
-              title: 'Kaizen Form',
-              text: 'Kaizen Form',
-            });
+            await navigator.share({ files: [file], title: 'Kaizen Form', text: 'Kaizen Form' });
           } else {
             const link = document.createElement('a');
             link.download = 'Kaizen_Form.png';
@@ -866,12 +742,10 @@
             link.click();
             alert('Image downloaded. Please attach it manually in WhatsApp.');
           }
-
           btn.disabled = false;
           btn.textContent = 'SHARE TO WHATSAPP';
         }, 'image/png');
       } catch (err) {
-        console.error(err);
         alert('Sharing failed. Please download the image and share manually.');
         btn.disabled = false;
         btn.textContent = 'SHARE TO WHATSAPP';
