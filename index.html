@@ -219,12 +219,13 @@
       line-height: 1.25;
     }
 
-    #kaizen-form table {
+    #kaizen-form > table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
     }
 
-    #kaizen-form td {
+    #kaizen-form > table > tbody > tr > td {
       border: 1.5px solid #111;
       padding: 4px 6px;
       vertical-align: top;
@@ -284,6 +285,10 @@
       min-height: 90px;
     }
 
+    /* =====================================================
+       IMPACT TABLE
+       ===================================================== */
+
     .impact-table {
       width: 100%;
       border-collapse: collapse;
@@ -303,86 +308,115 @@
     }
 
 
-    /* =========================================================
-       HORIZONTAL REPLICATION
-       ========================================================= */
+    /* =====================================================
+       FINAL SECTION
+       EXACT HORIZONTAL REPLICATION + RISK ASSESSMENT
+       ===================================================== */
+
+    .final-section-cell {
+      padding: 0 !important;
+      vertical-align: top !important;
+      background: #ffffff !important;
+    }
+
+    /*
+      Horizontal Replication
+
+      Two equal columns:
+      Area | Target Date
+    */
 
     .replication-table {
       width: 100%;
       border-collapse: collapse;
+      table-layout: fixed;
       background: #ffffff;
       font-size: 10px;
-      table-layout: fixed;
+      margin: 0;
     }
 
     .replication-table th,
     .replication-table td {
       border: 1px solid #111;
-      padding: 2px 4px;
+      background: #ffffff;
+      color: #000;
       text-align: center;
       vertical-align: middle;
-      background: #ffffff;
+      padding: 1px 3px;
     }
 
-    .replication-table th {
-      font-weight: 900;
-    }
-
-    .replication-table .main-header {
-      font-size: 10px;
+    /* Main "Horizontal Replication" header */
+    .replication-table .replication-main-header {
       height: 16px;
-      padding: 2px;
-    }
-
-    .replication-table .column-header {
       font-size: 10px;
       font-weight: 900;
-      height: 15px;
-      padding: 2px;
+      padding: 1px 2px;
+      text-align: center;
     }
 
+    /* Area / Target Date header */
+    .replication-table .replication-column-header {
+      height: 15px;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 1px 2px;
+      text-align: center;
+    }
+
+    /* Data rows */
     .replication-table td {
       height: 15px;
+      font-size: 9px;
       font-weight: 700;
-      padding: 2px 4px;
+      padding: 1px 3px;
     }
 
 
-    /* =========================================================
-       RISK ASSESSMENT
-       ========================================================= */
+    /*
+      Risk Assessment
 
-    .risk-cell {
+      This is a completely separate cell on the RIGHT,
+      starting at exactly the same height as Horizontal Replication.
+    */
+
+    .risk-assessment-cell {
       padding: 0 !important;
       background: #ffffff !important;
       vertical-align: top !important;
-      text-align: center;
     }
 
-    .risk-title {
+    .risk-assessment-title {
+      width: 100%;
+      height: 31px;
       border-bottom: 1px solid #111;
       background: #ffffff;
-      font-size: 10px;
-      font-weight: 900;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       text-align: center;
-      padding: 3px 2px;
-      min-height: 16px;
+      font-size: 9px;
+      font-weight: 900;
+      padding: 2px 4px;
     }
 
-    .risk-content {
+    .risk-assessment-content {
+      width: 100%;
+      min-height: 59px;
       background: #ffffff;
-      text-align: left;
-      font-size: 10px;
-      font-weight: 400;
+      color: #000;
       padding: 4px 5px;
-      min-height: 100px;
+      text-align: left;
+      font-size: 9px;
+      font-weight: 400;
       white-space: pre-wrap;
+      word-break: break-word;
     }
 
 
-    /* =========================================================
+    /* =====================================================
        BUTTONS
-       ========================================================= */
+       ===================================================== */
 
     .actions {
       display: flex;
@@ -433,6 +467,7 @@
     }
 
     @media (max-width: 1100px) {
+
       .container {
         flex-direction: column;
         align-items: center;
@@ -457,15 +492,29 @@
 
 <body>
 
+  <!-- =====================================================
+       TOP BAR
+       ===================================================== -->
+
   <div class="top-bar">
+
     <div>
-      <div class="logo">My <span>Kaizen</span></div>
-      <p>fill, preview live, download and share</p>
+
+      <div class="logo">
+        My <span>Kaizen</span>
+      </div>
+
+      <p>
+        fill, preview live, download and share
+      </p>
+
     </div>
+
   </div>
 
 
   <div class="container">
+
 
     <!-- =====================================================
          INPUT PANEL
@@ -473,62 +522,103 @@
 
     <div class="input-panel">
 
+
       <div class="field-card">
-        <label>Project Ref / Description</label>
+
+        <label>
+          Project Ref / Description
+        </label>
+
         <input
           type="text"
           id="projectRef"
           placeholder="e.g. KZ-2026-014 / Reduce setup time"
         />
+
       </div>
 
 
       <div class="field-card">
-        <label>Theme / Loss Category</label>
+
+        <label>
+          Theme / Loss Category
+        </label>
+
         <input
           type="text"
           id="theme"
           placeholder="e.g. Productivity / Setup loss"
         />
+
       </div>
 
 
       <div class="field-card">
-        <label>Location (5S Zone / Circle / Equipment)</label>
+
+        <label>
+          Location (5S Zone / Circle / Equipment)
+        </label>
+
         <input
           type="text"
           id="location"
           placeholder="e.g. Assembly Line-2 / Zone B"
         />
+
       </div>
 
 
       <div class="date-row">
 
         <div class="date-box">
-          <label>Started On</label>
-          <input type="date" id="startedOn" />
+
+          <label>
+            Started On
+          </label>
+
+          <input
+            type="date"
+            id="startedOn"
+          />
+
         </div>
 
+
         <div class="date-box">
-          <label>Completed On</label>
-          <input type="date" id="completedOn" />
+
+          <label>
+            Completed On
+          </label>
+
+          <input
+            type="date"
+            id="completedOn"
+          />
+
         </div>
 
       </div>
 
 
       <div class="field-card">
-        <label>Leader / Members</label>
+
+        <label>
+          Leader / Members
+        </label>
+
         <textarea
           id="leaderMembers"
           placeholder="Leader: Rahim&#10;Members: Karim, Salma..."
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Root Cause Analysis (Why-Why) : Ref No</label>
+
+        <label>
+          Root Cause Analysis (Why-Why) : Ref No
+        </label>
 
         <input
           type="text"
@@ -542,98 +632,151 @@
           class="large"
           placeholder="1. Why...&#10;2. Why...&#10;Root cause: ..."
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Background (Before)</label>
+
+        <label>
+          Background (Before)
+        </label>
+
         <textarea
           id="background"
           class="large"
           placeholder="Describe the situation before improvement..."
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Problem Description</label>
+
+        <label>
+          Problem Description
+        </label>
+
         <textarea
           id="problem"
           class="large"
           placeholder="What was the problem?"
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Jobs / Impr Carried Out (Work Order Ref)</label>
+
+        <label>
+          Jobs / Impr Carried Out (Work Order Ref)
+        </label>
+
         <textarea
           id="jobs"
           class="large"
           placeholder="What actions were taken? Work Order Ref if any..."
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Bench Mark</label>
+
+        <label>
+          Bench Mark
+        </label>
+
         <textarea
           id="benchmark"
           class="large"
           placeholder="e.g. Previous best / Industry standard"
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Targets</label>
+
+        <label>
+          Targets
+        </label>
+
         <textarea
           id="targets"
           class="large"
           placeholder="What targets were set?"
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Results</label>
+
+        <label>
+          Results
+        </label>
+
         <textarea
           id="results"
           class="large"
           placeholder="What results were achieved?"
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>After Advantage</label>
+
+        <label>
+          After Advantage
+        </label>
+
         <textarea
           id="advantage"
           class="large"
           placeholder="What advantages were gained after Kaizen?"
         ></textarea>
+
       </div>
 
 
       <div class="field-card">
-        <label>Benefit : After Kaizen How Much Gain (Bdt)</label>
+
+        <label>
+          Benefit : After Kaizen How Much Gain (Bdt)
+        </label>
+
         <textarea
           id="benefitBdt"
           class="large"
           placeholder="e.g. 45,000 BDT / month"
         ></textarea>
+
       </div>
 
 
-      <!-- IMPACT -->
+      <!-- =====================================================
+           IMPACT INPUT
+           ===================================================== -->
 
       <div class="field-card">
 
-        <label>Impact on FI (P Q C D S M)</label>
+        <label>
+          Impact on FI (P Q C D S M)
+        </label>
 
-        <div style="font-size:0.75rem; color:#555; margin-bottom:8px;">
-          Type <b>yes</b> to put ✓ tick mark. Leave empty for no tick.
+        <div
+          style="
+            font-size:0.75rem;
+            color:#555;
+            margin-bottom:8px;
+          "
+        >
+          Type <b>yes</b> to put ✓ tick mark.
+          Leave empty for no tick.
         </div>
+
 
         <div
           style="
@@ -646,63 +789,197 @@
         >
 
           <div></div>
-          <div style="font-weight:700; text-align:center;">Tick</div>
-          <div style="font-weight:700;">FI</div>
-          <div style="font-weight:700; text-align:center;">Tick</div>
+
+          <div
+            style="
+              font-weight:700;
+              text-align:center;
+            "
+          >
+            Tick
+          </div>
+
+          <div style="font-weight:700;">
+            FI
+          </div>
+
+          <div
+            style="
+              font-weight:700;
+              text-align:center;
+            "
+          >
+            Tick
+          </div>
 
 
-          <div class="impact-row-label">P</div>
-          <input type="text" id="tickP" placeholder="yes" style="text-align:center; padding:6px;">
-          <div style="font-weight:700;">AM</div>
-          <input type="text" id="tickAM" placeholder="yes" style="text-align:center; padding:6px;">
+          <div class="impact-row-label">
+            P
+          </div>
+
+          <input
+            type="text"
+            id="tickP"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
+
+          <div style="font-weight:700;">
+            AM
+          </div>
+
+          <input
+            type="text"
+            id="tickAM"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
 
-          <div class="impact-row-label">Q</div>
-          <input type="text" id="tickQ" placeholder="yes" style="text-align:center; padding:6px;">
-          <div style="font-weight:700;">PM</div>
-          <input type="text" id="tickPM" placeholder="yes" style="text-align:center; padding:6px;">
+          <div class="impact-row-label">
+            Q
+          </div>
+
+          <input
+            type="text"
+            id="tickQ"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
+
+          <div style="font-weight:700;">
+            PM
+          </div>
+
+          <input
+            type="text"
+            id="tickPM"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
 
-          <div class="impact-row-label">C</div>
-          <input type="text" id="tickC" placeholder="yes" style="text-align:center; padding:6px;">
-          <div style="font-weight:700;">EM</div>
-          <input type="text" id="tickEM" placeholder="yes" style="text-align:center; padding:6px;">
+          <div class="impact-row-label">
+            C
+          </div>
+
+          <input
+            type="text"
+            id="tickC"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
+
+          <div style="font-weight:700;">
+            EM
+          </div>
+
+          <input
+            type="text"
+            id="tickEM"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
 
-          <div class="impact-row-label">D</div>
-          <input type="text" id="tickD" placeholder="yes" style="text-align:center; padding:6px;">
-          <div style="font-weight:700;">QM</div>
-          <input type="text" id="tickQM" placeholder="yes" style="text-align:center; padding:6px;">
+          <div class="impact-row-label">
+            D
+          </div>
+
+          <input
+            type="text"
+            id="tickD"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
+
+          <div style="font-weight:700;">
+            QM
+          </div>
+
+          <input
+            type="text"
+            id="tickQM"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
 
-          <div class="impact-row-label">S</div>
-          <input type="text" id="tickS" placeholder="yes" style="text-align:center; padding:6px;">
-          <div style="font-weight:700;">OTPM</div>
-          <input type="text" id="tickOTPM" placeholder="yes" style="text-align:center; padding:6px;">
+          <div class="impact-row-label">
+            S
+          </div>
+
+          <input
+            type="text"
+            id="tickS"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
+
+          <div style="font-weight:700;">
+            OTPM
+          </div>
+
+          <input
+            type="text"
+            id="tickOTPM"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
 
-          <div class="impact-row-label">M</div>
-          <input type="text" id="tickM" placeholder="yes" style="text-align:center; padding:6px;">
-          <div style="font-weight:700;">SHE</div>
-          <input type="text" id="tickSHE" placeholder="yes" style="text-align:center; padding:6px;">
+          <div class="impact-row-label">
+            M
+          </div>
+
+          <input
+            type="text"
+            id="tickM"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
+
+          <div style="font-weight:700;">
+            SHE
+          </div>
+
+          <input
+            type="text"
+            id="tickSHE"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
 
           <div></div>
           <div></div>
-          <div style="font-weight:700;">T&D</div>
-          <input type="text" id="tickTD" placeholder="yes" style="text-align:center; padding:6px;">
+
+          <div style="font-weight:700;">
+            T&D
+          </div>
+
+          <input
+            type="text"
+            id="tickTD"
+            placeholder="yes"
+            style="text-align:center; padding:6px;"
+          >
 
         </div>
+
       </div>
 
 
       <!-- =====================================================
-           HORIZONTAL REPLICATION INPUTS
+           HORIZONTAL REPLICATION INPUT
            ===================================================== -->
 
       <div class="field-card">
 
-        <label>Horizontal Replication</label>
+        <label>
+          Horizontal Replication
+        </label>
+
 
         <div
           style="
@@ -713,46 +990,122 @@
         >
 
           <div>
-            <label style="font-size:0.75rem;">Area 1</label>
-            <input type="text" id="replicationArea1" placeholder="e.g. Stand-17">
-          </div>
 
-          <div>
-            <label style="font-size:0.75rem;">Target Date 1</label>
-            <input type="text" id="replicationDate1" placeholder="e.g. May'2026">
-          </div>
+            <label style="font-size:0.75rem;">
+              Area 1
+            </label>
 
+            <input
+              type="text"
+              id="replicationArea1"
+              placeholder="e.g. Stand-17"
+            >
 
-          <div>
-            <label style="font-size:0.75rem;">Area 2</label>
-            <input type="text" id="replicationArea2" placeholder="e.g. Stand-16">
-          </div>
-
-          <div>
-            <label style="font-size:0.75rem;">Target Date 2</label>
-            <input type="text" id="replicationDate2" placeholder="e.g. April'2026">
           </div>
 
 
           <div>
-            <label style="font-size:0.75rem;">Area 3</label>
-            <input type="text" id="replicationArea3" placeholder="e.g. Stand-15">
+
+            <label style="font-size:0.75rem;">
+              Target Date 1
+            </label>
+
+            <input
+              type="text"
+              id="replicationDate1"
+              placeholder="e.g. May'2026"
+            >
+
           </div>
 
+
           <div>
-            <label style="font-size:0.75rem;">Target Date 3</label>
-            <input type="text" id="replicationDate3" placeholder="e.g. April'2026">
+
+            <label style="font-size:0.75rem;">
+              Area 2
+            </label>
+
+            <input
+              type="text"
+              id="replicationArea2"
+              placeholder="e.g. Stand-16"
+            >
+
           </div>
 
 
           <div>
-            <label style="font-size:0.75rem;">Area 4</label>
-            <input type="text" id="replicationArea4" placeholder="e.g. Stand-13">
+
+            <label style="font-size:0.75rem;">
+              Target Date 2
+            </label>
+
+            <input
+              type="text"
+              id="replicationDate2"
+              placeholder="e.g. April'2026"
+            >
+
           </div>
 
+
           <div>
-            <label style="font-size:0.75rem;">Target Date 4</label>
-            <input type="text" id="replicationDate4" placeholder="e.g. May'2026">
+
+            <label style="font-size:0.75rem;">
+              Area 3
+            </label>
+
+            <input
+              type="text"
+              id="replicationArea3"
+              placeholder="e.g. Stand-15"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label style="font-size:0.75rem;">
+              Target Date 3
+            </label>
+
+            <input
+              type="text"
+              id="replicationDate3"
+              placeholder="e.g. April'2026"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label style="font-size:0.75rem;">
+              Area 4
+            </label>
+
+            <input
+              type="text"
+              id="replicationArea4"
+              placeholder="e.g. Stand-13"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label style="font-size:0.75rem;">
+              Target Date 4
+            </label>
+
+            <input
+              type="text"
+              id="replicationDate4"
+              placeholder="e.g. May'2026"
+            >
+
           </div>
 
         </div>
@@ -760,11 +1113,15 @@
       </div>
 
 
-      <!-- RISK -->
+      <!-- =====================================================
+           RISK INPUT
+           ===================================================== -->
 
       <div class="field-card">
 
-        <label>Risk Assessment - Demerit / Mitigation</label>
+        <label>
+          Risk Assessment - Demerit / Mitigation
+        </label>
 
         <textarea
           id="risk"
@@ -778,7 +1135,9 @@
 
       <div class="field-card">
 
-        <label>Sketch / Photo BEFORE</label>
+        <label>
+          Sketch / Photo BEFORE
+        </label>
 
         <div
           class="photo-upload"
@@ -805,7 +1164,9 @@
 
       <div class="field-card">
 
-        <label>Sketch / Photo AFTER</label>
+        <label>
+          Sketch / Photo AFTER
+        </label>
 
         <div
           class="photo-upload"
@@ -831,7 +1192,7 @@
 
 
     <!-- =====================================================
-         PREVIEW PANEL
+         PREVIEW
          ===================================================== -->
 
     <div class="preview-panel">
@@ -842,7 +1203,9 @@
 
           <table>
 
-            <!-- TITLE -->
+            <!-- =================================================
+                 TITLE
+                 ================================================= -->
 
             <tr>
 
@@ -868,7 +1231,9 @@
             </tr>
 
 
-            <!-- TOP INFORMATION -->
+            <!-- =================================================
+                 TOP INFORMATION
+                 ================================================= -->
 
             <tr>
 
@@ -983,7 +1348,9 @@
             </tr>
 
 
-            <!-- LEADER / RCA -->
+            <!-- =================================================
+                 LEADER / RCA
+                 ================================================= -->
 
             <tr>
 
@@ -1004,7 +1371,10 @@
               </td>
 
 
-              <td colspan="2" style="min-height:80px;">
+              <td
+                colspan="2"
+                style="min-height:80px;"
+              >
 
                 <span class="field-label">
                   Root Cause Analysis (Why-Why) : Ref No -
@@ -1028,7 +1398,9 @@
             </tr>
 
 
-            <!-- BACKGROUND / PROBLEM -->
+            <!-- =================================================
+                 BACKGROUND / PROBLEM
+                 ================================================= -->
 
             <tr>
 
@@ -1089,7 +1461,9 @@
             </tr>
 
 
-            <!-- JOBS -->
+            <!-- =================================================
+                 JOBS
+                 ================================================= -->
 
             <tr>
 
@@ -1131,7 +1505,9 @@
             </tr>
 
 
-            <!-- TARGETS -->
+            <!-- =================================================
+                 TARGETS
+                 ================================================= -->
 
             <tr>
 
@@ -1157,7 +1533,9 @@
             </tr>
 
 
-            <!-- RESULTS -->
+            <!-- =================================================
+                 RESULTS
+                 ================================================= -->
 
             <tr>
 
@@ -1183,7 +1561,9 @@
             </tr>
 
 
-            <!-- ADVANTAGE / BENEFIT / RISK -->
+            <!-- =================================================
+                 ADVANTAGE / BENEFIT
+                 ================================================= -->
 
             <tr>
 
@@ -1224,41 +1604,25 @@
               </td>
 
 
-              <!-- RISK ASSESSMENT -->
+              <td colspan="3">
 
-              <td
-                colspan="3"
-                rowspan="2"
-                class="risk-cell"
-              >
-
-                <div class="risk-title">
-                  RISK ASSESSMENT - Demerit / MITIGATION
-                </div>
-
-                <div
-                  class="risk-content"
-                  id="pv-risk"
-                ></div>
+                <!-- EMPTY SPACE ABOVE FINAL SECTION -->
 
               </td>
 
             </tr>
 
 
-            <!-- IMPACT + HORIZONTAL REPLICATION -->
+            <!-- =================================================
+                 IMPACT TABLE
+                 ================================================= -->
 
             <tr>
 
               <td
                 colspan="3"
-                style="
-                  padding:0;
-                  vertical-align:top;
-                "
+                style="padding:0;"
               >
-
-                <!-- IMPACT TABLE -->
 
                 <table class="impact-table">
 
@@ -1289,19 +1653,13 @@
                       P
                     </td>
 
-                    <td
-                      id="pv-tickP"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickP"></td>
 
                     <td style="font-weight:700;">
                       AM
                     </td>
 
-                    <td
-                      id="pv-tickAM"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickAM"></td>
 
                   </tr>
 
@@ -1312,19 +1670,13 @@
                       Q
                     </td>
 
-                    <td
-                      id="pv-tickQ"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickQ"></td>
 
                     <td style="font-weight:700;">
                       PM
                     </td>
 
-                    <td
-                      id="pv-tickPM"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickPM"></td>
 
                   </tr>
 
@@ -1335,19 +1687,13 @@
                       C
                     </td>
 
-                    <td
-                      id="pv-tickC"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickC"></td>
 
                     <td style="font-weight:700;">
                       EM
                     </td>
 
-                    <td
-                      id="pv-tickEM"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickEM"></td>
 
                   </tr>
 
@@ -1358,19 +1704,13 @@
                       D
                     </td>
 
-                    <td
-                      id="pv-tickD"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickD"></td>
 
                     <td style="font-weight:700;">
                       QM
                     </td>
 
-                    <td
-                      id="pv-tickQM"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickQM"></td>
 
                   </tr>
 
@@ -1381,19 +1721,13 @@
                       S
                     </td>
 
-                    <td
-                      id="pv-tickS"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickS"></td>
 
                     <td style="font-weight:700;">
                       OTPM
                     </td>
 
-                    <td
-                      id="pv-tickOTPM"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickOTPM"></td>
 
                   </tr>
 
@@ -1404,19 +1738,13 @@
                       M
                     </td>
 
-                    <td
-                      id="pv-tickM"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickM"></td>
 
                     <td style="font-weight:700;">
                       SHE
                     </td>
 
-                    <td
-                      id="pv-tickSHE"
-                      style="font-weight:700;"
-                    ></td>
+                    <td id="pv-tickSHE"></td>
 
                   </tr>
 
@@ -1431,79 +1759,7 @@
                       T&D
                     </td>
 
-                    <td
-                      id="pv-tickTD"
-                      style="font-weight:700;"
-                    ></td>
-
-                  </tr>
-
-                </table>
-
-
-                <!-- =================================================
-                     HORIZONTAL REPLICATION TABLE
-                     ================================================= -->
-
-                <table class="replication-table">
-
-                  <tr>
-
-                    <th
-                      colspan="2"
-                      class="main-header"
-                    >
-                      Horizontal Replication
-                    </th>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <th class="column-header">
-                      Area
-                    </th>
-
-                    <th class="column-header">
-                      Target Date
-                    </th>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <td id="pv-replicationArea1"></td>
-
-                    <td id="pv-replicationDate1"></td>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <td id="pv-replicationArea2"></td>
-
-                    <td id="pv-replicationDate2"></td>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <td id="pv-replicationArea3"></td>
-
-                    <td id="pv-replicationDate3"></td>
-
-                  </tr>
-
-
-                  <tr>
-
-                    <td id="pv-replicationArea4"></td>
-
-                    <td id="pv-replicationDate4"></td>
+                    <td id="pv-tickTD"></td>
 
                   </tr>
 
@@ -1511,7 +1767,148 @@
 
               </td>
 
+
+              <td colspan="3">
+
+                <!-- Empty right side -->
+
+              </td>
+
             </tr>
+
+
+            <!-- =================================================
+                 FINAL ROW
+                 
+                 THIS IS THE IMPORTANT PART
+
+                 LEFT  = HORIZONTAL REPLICATION
+                 RIGHT = RISK ASSESSMENT
+
+                 BOTH START AT EXACTLY THE SAME HEIGHT
+                 ================================================= -->
+
+            <tr>
+
+
+              <!-- =================================================
+                   LEFT HALF — HORIZONTAL REPLICATION
+                   ================================================= -->
+
+              <td
+                colspan="3"
+                class="final-section-cell"
+              >
+
+                <table class="replication-table">
+
+                  <!-- Main Header -->
+
+                  <tr>
+
+                    <th
+                      colspan="2"
+                      class="replication-main-header"
+                    >
+                      Horizontal Replication
+                    </th>
+
+                  </tr>
+
+
+                  <!-- Column Headers -->
+
+                  <tr>
+
+                    <th class="replication-column-header">
+                      Area
+                    </th>
+
+                    <th class="replication-column-header">
+                      Target Date
+                    </th>
+
+                  </tr>
+
+
+                  <!-- Row 1 -->
+
+                  <tr>
+
+                    <td id="pv-replicationArea1">
+                    </td>
+
+                    <td id="pv-replicationDate1">
+                    </td>
+
+                  </tr>
+
+
+                  <!-- Row 2 -->
+
+                  <tr>
+
+                    <td id="pv-replicationArea2">
+                    </td>
+
+                    <td id="pv-replicationDate2">
+                    </td>
+
+                  </tr>
+
+
+                  <!-- Row 3 -->
+
+                  <tr>
+
+                    <td id="pv-replicationArea3">
+                    </td>
+
+                    <td id="pv-replicationDate3">
+                    </td>
+
+                  </tr>
+
+
+                  <!-- Row 4 -->
+
+                  <tr>
+
+                    <td id="pv-replicationArea4">
+                    </td>
+
+                    <td id="pv-replicationDate4">
+                    </td>
+
+                  </tr>
+
+                </table>
+
+              </td>
+
+
+              <!-- =================================================
+                   RIGHT HALF — RISK ASSESSMENT
+                   ================================================= -->
+
+              <td
+                colspan="3"
+                class="risk-assessment-cell"
+              >
+
+                <div class="risk-assessment-title">
+                  RISK ASSESSMENT - Demerit / MITIGATION
+                </div>
+
+                <div
+                  class="risk-assessment-content"
+                  id="pv-risk"
+                ></div>
+
+              </td>
+
+            </tr>
+
 
           </table>
 
@@ -1520,7 +1917,9 @@
       </div>
 
 
-      <!-- BUTTONS -->
+      <!-- =====================================================
+           BUTTONS
+           ===================================================== -->
 
       <div class="actions">
 
@@ -1560,6 +1959,7 @@
 
   <script>
 
+
     /* =========================================================
        NORMAL FIELD BINDINGS
        ========================================================= */
@@ -1589,8 +1989,12 @@
 
     bindings.forEach(([inputId, previewId]) => {
 
-      const input = document.getElementById(inputId);
-      const preview = document.getElementById(previewId);
+      const input =
+        document.getElementById(inputId);
+
+      const preview =
+        document.getElementById(previewId);
+
 
       if (!input || !preview) return;
 
@@ -1600,11 +2004,16 @@
         let val = input.value;
 
 
-        if (input.type === 'date' && val) {
+        if (
+          input.type === 'date' &&
+          val
+        ) {
 
-          const [y, m, d] = val.split('-');
+          const [y, m, d] =
+            val.split('-');
 
-          val = `${d}-${m}-${y}`;
+          val =
+            `${d}-${m}-${y}`;
 
         }
 
@@ -1614,14 +2023,21 @@
       };
 
 
-      input.addEventListener('input', update);
-      input.addEventListener('change', update);
+      input.addEventListener(
+        'input',
+        update
+      );
+
+      input.addEventListener(
+        'change',
+        update
+      );
 
     });
 
 
     /* =========================================================
-       HORIZONTAL REPLICATION BINDINGS
+       HORIZONTAL REPLICATION
        ========================================================= */
 
     const replicationBindings = [
@@ -1641,29 +2057,43 @@
     ];
 
 
-    replicationBindings.forEach(([inputId, previewId]) => {
+    replicationBindings.forEach(
+      ([inputId, previewId]) => {
 
-      const input = document.getElementById(inputId);
-      const preview = document.getElementById(previewId);
+        const input =
+          document.getElementById(inputId);
 
-      if (!input || !preview) return;
-
-
-      const update = () => {
-
-        preview.textContent = input.value;
-
-      };
+        const preview =
+          document.getElementById(previewId);
 
 
-      input.addEventListener('input', update);
-      input.addEventListener('change', update);
+        if (!input || !preview) return;
 
-    });
+
+        const update = () => {
+
+          preview.textContent =
+            input.value;
+
+        };
+
+
+        input.addEventListener(
+          'input',
+          update
+        );
+
+        input.addEventListener(
+          'change',
+          update
+        );
+
+      }
+    );
 
 
     /* =========================================================
-       TICK MARK
+       TICK MARKS
        ========================================================= */
 
     const tickMap = [
@@ -1686,105 +2116,140 @@
     ];
 
 
-    tickMap.forEach(([inputId, previewId]) => {
+    tickMap.forEach(
+      ([inputId, previewId]) => {
 
-      const input = document.getElementById(inputId);
-      const preview = document.getElementById(previewId);
+        const input =
+          document.getElementById(inputId);
 
-      if (!input || !preview) return;
-
-
-      const update = () => {
-
-        const val =
-          (input.value || '')
-          .trim()
-          .toLowerCase();
+        const preview =
+          document.getElementById(previewId);
 
 
-        if (
-          val === 'yes' ||
-          val === 'y' ||
-          val === '✓' ||
-          val === 'tick'
-        ) {
-
-          preview.textContent = '✓';
-
-        } else {
-
-          preview.textContent = '';
-
-        }
-
-      };
+        if (!input || !preview) return;
 
 
-      input.addEventListener('input', update);
-      input.addEventListener('change', update);
+        const update = () => {
 
-    });
-
-
-    /* =========================================================
-       PHOTO SETUP
-       ========================================================= */
-
-    function setupPhoto(inputId, uploadDivId, previewBoxId) {
-
-      const input = document.getElementById(inputId);
-      const uploadDiv = document.getElementById(uploadDivId);
-      const previewBox = document.getElementById(previewBoxId);
+          const val =
+            (input.value || '')
+            .trim()
+            .toLowerCase();
 
 
-      input.addEventListener('change', function handler(e) {
+          if (
+            val === 'yes' ||
+            val === 'y' ||
+            val === '✓' ||
+            val === 'tick'
+          ) {
 
-        const file = e.target.files[0];
+            preview.textContent =
+              '✓';
 
-        if (!file) return;
+          } else {
 
+            preview.textContent =
+              '';
 
-        const reader = new FileReader();
-
-
-        reader.onload = (ev) => {
-
-          uploadDiv.classList.add('has-image');
-
-
-          uploadDiv.innerHTML = `
-            <img
-              src="${ev.target.result}"
-              alt="preview"
-            />
-
-            <input
-              type="file"
-              id="${inputId}"
-              accept="image/*"
-              style="display:none"
-            />
-          `;
-
-
-          document
-            .getElementById(inputId)
-            .addEventListener('change', handler);
-
-
-          previewBox.innerHTML = `
-            <img
-              src="${ev.target.result}"
-              alt="photo"
-            />
-          `;
+          }
 
         };
 
 
-        reader.readAsDataURL(file);
+        input.addEventListener(
+          'input',
+          update
+        );
 
-      });
+        input.addEventListener(
+          'change',
+          update
+        );
+
+      }
+    );
+
+
+    /* =========================================================
+       PHOTO UPLOAD
+       ========================================================= */
+
+    function setupPhoto(
+      inputId,
+      uploadDivId,
+      previewBoxId
+    ) {
+
+      const input =
+        document.getElementById(inputId);
+
+      const uploadDiv =
+        document.getElementById(uploadDivId);
+
+      const previewBox =
+        document.getElementById(previewBoxId);
+
+
+      input.addEventListener(
+        'change',
+        function handler(e) {
+
+          const file =
+            e.target.files[0];
+
+
+          if (!file) return;
+
+
+          const reader =
+            new FileReader();
+
+
+          reader.onload = (ev) => {
+
+            uploadDiv.classList.add(
+              'has-image'
+            );
+
+
+            uploadDiv.innerHTML = `
+              <img
+                src="${ev.target.result}"
+                alt="preview"
+              />
+
+              <input
+                type="file"
+                id="${inputId}"
+                accept="image/*"
+                style="display:none"
+              />
+            `;
+
+
+            document
+              .getElementById(inputId)
+              .addEventListener(
+                'change',
+                handler
+              );
+
+
+            previewBox.innerHTML = `
+              <img
+                src="${ev.target.result}"
+                alt="photo"
+              />
+            `;
+
+          };
+
+
+          reader.readAsDataURL(file);
+
+        }
+      );
 
     }
 
@@ -1810,31 +2275,41 @@
     async function downloadImage() {
 
       const btn =
-        document.getElementById('downloadBtn');
+        document.getElementById(
+          'downloadBtn'
+        );
 
 
       btn.disabled = true;
-      btn.textContent = 'Generating...';
+
+      btn.textContent =
+        'Generating...';
 
 
       try {
 
         const form =
-          document.getElementById('kaizen-form');
+          document.getElementById(
+            'kaizen-form'
+          );
 
 
         const canvas =
-          await html2canvas(form, {
+          await html2canvas(
+            form,
+            {
 
-            scale: 2,
+              scale: 2,
 
-            useCORS: true,
+              useCORS: true,
 
-            backgroundColor: '#ffffff',
+              backgroundColor:
+                '#ffffff',
 
-            logging: false
+              logging: false
 
-          });
+            }
+          );
 
 
         const link =
@@ -1844,11 +2319,13 @@
         link.download =
           `Kaizen_Form_${new Date()
             .toISOString()
-            .slice(0,10)}.png`;
+            .slice(0, 10)}.png`;
 
 
         link.href =
-          canvas.toDataURL('image/png');
+          canvas.toDataURL(
+            'image/png'
+          );
 
 
         link.click();
@@ -1872,96 +2349,117 @@
 
 
     /* =========================================================
-       SHARE TO WHATSAPP / DEVICE SHARE
+       SHARE
        ========================================================= */
 
     async function shareWhatsApp() {
 
       const btn =
-        document.getElementById('whatsappBtn');
+        document.getElementById(
+          'whatsappBtn'
+        );
 
 
       btn.disabled = true;
-      btn.textContent = 'Preparing...';
+
+      btn.textContent =
+        'Preparing...';
 
 
       try {
 
         const form =
-          document.getElementById('kaizen-form');
+          document.getElementById(
+            'kaizen-form'
+          );
 
 
         const canvas =
-          await html2canvas(form, {
+          await html2canvas(
+            form,
+            {
 
-            scale: 2,
+              scale: 2,
 
-            useCORS: true,
+              useCORS: true,
 
-            backgroundColor: '#ffffff',
+              backgroundColor:
+                '#ffffff',
 
-            logging: false
+              logging: false
 
-          });
-
-
-        canvas.toBlob(async (blob) => {
-
-          const file =
-            new File(
-              [blob],
-              'Kaizen_Form.png',
-              { type: 'image/png' }
-            );
+            }
+          );
 
 
-          if (
-            navigator.canShare &&
-            navigator.canShare({
-              files: [file]
-            })
-          ) {
+        canvas.toBlob(
+          async (blob) => {
 
-            await navigator.share({
-
-              files: [file],
-
-              title: 'Kaizen Form',
-
-              text: 'Kaizen Form'
-
-            });
-
-          } else {
-
-            const link =
-              document.createElement('a');
+            const file =
+              new File(
+                [blob],
+                'Kaizen_Form.png',
+                {
+                  type: 'image/png'
+                }
+              );
 
 
-            link.download =
-              'Kaizen_Form.png';
+            if (
+              navigator.canShare &&
+              navigator.canShare({
+                files: [file]
+              })
+            ) {
+
+              await navigator.share({
+
+                files: [file],
+
+                title:
+                  'Kaizen Form',
+
+                text:
+                  'Kaizen Form'
+
+              });
+
+            } else {
+
+              const link =
+                document.createElement(
+                  'a'
+                );
 
 
-            link.href =
-              canvas.toDataURL('image/png');
+              link.download =
+                'Kaizen_Form.png';
 
 
-            link.click();
+              link.href =
+                canvas.toDataURL(
+                  'image/png'
+                );
 
 
-            alert(
-              'Image downloaded. Please attach it manually in WhatsApp.'
-            );
-
-          }
+              link.click();
 
 
-          btn.disabled = false;
+              alert(
+                'Image downloaded. Please attach it manually in WhatsApp.'
+              );
 
-          btn.textContent =
-            'SHARE TO WHATSAPP';
+            }
 
-        }, 'image/png');
+
+            btn.disabled = false;
+
+            btn.textContent =
+              'SHARE TO WHATSAPP';
+
+          },
+          'image/png'
+        );
 
 
       } catch (err) {
