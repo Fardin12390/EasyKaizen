@@ -148,7 +148,7 @@
     }
 
     /* =========================================================
-       CLEAN CSS PIXEL-PERFECT GRID (NO OVERFLOW)
+       FORM GRID
        ========================================================= */
     #kaizen-form {
       width: 1100px;
@@ -251,7 +251,7 @@
       font-size: 11px;
     }
 
-    /* BOTTOM FI & REPLICATION GRID */
+    /* IMPACT ON FI GRID */
     .bottom-fi-col {
       width: 285px;
       display: flex;
@@ -281,7 +281,7 @@
       align-items: center;
       justify-content: center;
       border-right: var(--border-w) solid var(--border-color);
-      font-size: 9px;
+      font-size: 9.5px;
       padding: 0 4px;
     }
 
@@ -291,10 +291,18 @@
 
     .grid-head {
       font-weight: 800;
+      font-style: italic;
       background: #fff;
     }
 
-    /* PERFECT RISK BOX */
+    .grid-head-left {
+      font-weight: 800;
+      font-style: italic;
+      background: #fff;
+      justify-content: flex-start !important;
+      padding-left: 6px !important;
+    }
+
     .risk-header-fixed {
       height: 40px;
       min-height: 40px;
@@ -433,24 +441,53 @@
         <textarea id="benefitBdt" class="large" placeholder="e.g. Previously grease consumption..."></textarea>
       </div>
 
-      <!-- FI IMPACT -->
+      <!-- FI IMPACT INPUT CARD -->
       <div class="field-card">
-        <label>Impact on FI (Type 'yes' or '1' to check)</label>
-        <div style="display:grid; grid-template-columns:30px 45px 1fr 45px; gap:4px; font-size:0.75rem; align-items:center;">
-          <b>P</b><input type="text" id="tickP" style="padding:3px; text-align:center;">
-          <b>AM</b><input type="text" id="tickAM" style="padding:3px; text-align:center;">
-          <b>Q</b><input type="text" id="tickQ" style="padding:3px; text-align:center;">
-          <b>PM</b><input type="text" id="tickPM" style="padding:3px; text-align:center;">
-          <b>C</b><input type="text" id="tickC" style="padding:3px; text-align:center;">
-          <b>EM</b><input type="text" id="tickEM" style="padding:3px; text-align:center;">
-          <b>D</b><input type="text" id="tickD" style="padding:3px; text-align:center;">
-          <b>QM</b><input type="text" id="tickQM" style="padding:3px; text-align:center;">
-          <b>S</b><input type="text" id="tickS" style="padding:3px; text-align:center;">
-          <b>OTPM</b><input type="text" id="tickOTPM" style="padding:3px; text-align:center;">
-          <b>M</b><input type="text" id="tickM" style="padding:3px; text-align:center;">
-          <b>SHE</b><input type="text" id="tickSHE" style="padding:3px; text-align:center;">
-          <div></div><div></div>
-          <b>T&D</b><input type="text" id="tickTD" style="padding:3px; text-align:center;">
+        <label>Impact on FI</label>
+        <div style="font-size:0.75rem; color:#666; margin-bottom:8px;">
+          Type <b>yes</b> or <b>1</b> to tick (✓)
+        </div>
+
+        <div style="display: grid; grid-template-columns: 50px 45px 55px 45px; gap: 6px; align-items: center; font-size: 0.82rem;">
+          <div style="font-weight: 800; font-style: italic; color: #111;">Impact on :</div>
+          <div style="font-weight: 800; text-align: center; color: #111;">✓</div>
+          <div style="font-weight: 800; font-style: italic; color: #111;">FI</div>
+          <div style="font-weight: 800; text-align: center; color: #111;">✓</div>
+
+          <div style="font-weight: 700;">P</div>
+          <input type="text" id="tickP" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">AM</div>
+          <input type="text" id="tickAM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">Q</div>
+          <input type="text" id="tickQ" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">PM</div>
+          <input type="text" id="tickPM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">C</div>
+          <input type="text" id="tickC" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">EM</div>
+          <input type="text" id="tickEM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">D</div>
+          <input type="text" id="tickD" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">QM</div>
+          <input type="text" id="tickQM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">S</div>
+          <input type="text" id="tickS" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">OTPM</div>
+          <input type="text" id="tickOTPM" style="padding: 4px; text-align: center;" />
+
+          <div style="font-weight: 700;">M</div>
+          <input type="text" id="tickM" style="padding: 4px; text-align: center;" />
+          <div style="font-weight: 700;">SHE</div>
+          <input type="text" id="tickSHE" style="padding: 4px; text-align: center;" />
+
+          <div></div>
+          <div></div>
+          <div style="font-weight: 700;">T&D</div>
+          <input type="text" id="tickTD" style="padding: 4px; text-align: center;" />
         </div>
       </div>
 
@@ -620,50 +657,79 @@
           <!-- BOTTOM SECTION: FI + REPLICATION + RISK ASSESSMENT -->
           <div class="row-flex" style="border-top: var(--border-w) solid var(--border-color); height: 160px;">
             
-            <!-- IMPACT FI TABLE -->
+            <!-- IMPACT FI TABLE (MATCHES IMAGE FORMAT EXACTLY) -->
             <div class="bottom-fi-col">
+              <!-- HEADER ROW -->
               <div class="sub-grid-row">
-                <div class="grid-cell grid-head" style="width: 50%;">Impact on</div>
-                <div class="grid-cell grid-head" style="width: 50%;">FI</div>
+                <div class="grid-cell grid-head-left" style="width: 50%;">Impact on :</div>
+                <div class="grid-cell grid-head-left" style="width: 50%;">FI</div>
               </div>
+              
+              <!-- P & AM -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"><b>P</b>&nbsp;<span id="pv-tickP"></span></div>
-                <div class="grid-cell" style="width: 50%;"><b>AM</b>&nbsp;<span id="pv-tickAM"></span></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">P</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickP"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">AM</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickAM"></div>
               </div>
+
+              <!-- Q & PM -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"><b>Q</b>&nbsp;<span id="pv-tickQ"></span></div>
-                <div class="grid-cell" style="width: 50%;"><b>PM</b>&nbsp;<span id="pv-tickPM"></span></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">Q</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickQ"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">PM</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickPM"></div>
               </div>
+
+              <!-- C & EM -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"><b>C</b>&nbsp;<span id="pv-tickC"></span></div>
-                <div class="grid-cell" style="width: 50%;"><b>EM</b>&nbsp;<span id="pv-tickEM"></span></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">C</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickC"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">EM</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickEM"></div>
               </div>
+
+              <!-- D & QM -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"><b>D</b>&nbsp;<span id="pv-tickD"></span></div>
-                <div class="grid-cell" style="width: 50%;"><b>QM</b>&nbsp;<span id="pv-tickQM"></span></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">D</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickD"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">QM</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickQM"></div>
               </div>
+
+              <!-- S & OTPM -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"><b>S</b>&nbsp;<span id="pv-tickS"></span></div>
-                <div class="grid-cell" style="width: 50%;"><b>OTPM</b>&nbsp;<span id="pv-tickOTPM"></span></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">S</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickS"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">OTPM</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickOTPM"></div>
               </div>
+
+              <!-- M & SHE -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"><b>M</b>&nbsp;<span id="pv-tickM"></span></div>
-                <div class="grid-cell" style="width: 50%;"><b>SHE</b>&nbsp;<span id="pv-tickSHE"></span></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">M</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickM"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">SHE</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickSHE"></div>
               </div>
+
+              <!-- EMPTY & T&D -->
               <div class="sub-grid-row">
-                <div class="grid-cell" style="width: 50%;"></div>
-                <div class="grid-cell" style="width: 50%;"><b>T&D</b>&nbsp;<span id="pv-tickTD"></span></div>
+                <div class="grid-cell" style="width: 22%;"></div>
+                <div class="grid-cell" style="width: 28%;"></div>
+                <div class="grid-cell" style="width: 22%; font-weight: 700;">T&D</div>
+                <div class="grid-cell" style="width: 28%;" id="pv-tickTD"></div>
               </div>
             </div>
 
             <!-- HORIZONTAL REPLICATION -->
             <div class="bottom-rep-col">
               <div class="sub-grid-row">
-                <div class="grid-cell grid-head" style="width: 100%;">Horizontal Replication</div>
+                <div class="grid-cell grid-head" style="width: 100%; font-style: normal;">Horizontal Replication</div>
               </div>
               <div class="sub-grid-row">
-                <div class="grid-cell grid-head" style="width: 50%;">Area</div>
-                <div class="grid-cell grid-head" style="width: 50%;">Target Date</div>
+                <div class="grid-cell grid-head" style="width: 50%; font-style: normal;">Area</div>
+                <div class="grid-cell grid-head" style="width: 50%; font-style: normal;">Target Date</div>
               </div>
               <div class="sub-grid-row">
                 <div class="grid-cell" style="width: 50%;" id="pv-replicationArea1">&nbsp;</div>
@@ -691,7 +757,7 @@
               </div>
             </div>
 
-            <!-- RISK ASSESSMENT (PERFECT BOX) -->
+            <!-- RISK ASSESSMENT -->
             <div class="col-right" style="border-left: var(--border-w) solid var(--border-color);">
               <div class="risk-header-fixed">
                 RISK ASSESSMENT - Demerit /<br>MITIGATION
@@ -769,7 +835,7 @@
 
       const update = () => {
         const val = (input.value || '').trim().toLowerCase();
-        preview.textContent = ['yes', 'y', '✓', 'tick', '1', 'x'].includes(val) ? ' ✓' : '';
+        preview.textContent = ['yes', 'y', '✓', 'tick', '1', 'x'].includes(val) ? '✓' : '';
       };
       input.addEventListener('input', update);
       input.addEventListener('change', update);
