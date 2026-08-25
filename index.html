@@ -142,10 +142,11 @@
       background: white;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       border: 2px solid #000;
+      display: inline-block;
     }
 
     /* =========================================================
-       CLEAN UNIFIED TABLE STYLES
+       PRECISE TABLE LAYOUT
        ========================================================= */
     #kaizen-form {
       width: 1100px;
@@ -222,21 +223,32 @@
       font-size: 11px;
     }
 
-    /* Lower Section Specific Alignment */
-    .table-center {
-      text-align: center !important;
-      vertical-align: middle !important;
-      padding: 2px 4px !important;
-      height: 19px;
-    }
-
-    .table-header {
+    /* Bottom Section Table Classes */
+    .th-sub {
       font-weight: 800;
       font-size: 9px;
       text-align: center !important;
       vertical-align: middle !important;
-      padding: 2px 4px !important;
+      padding: 3px 2px !important;
       height: 20px;
+    }
+
+    .td-cell {
+      text-align: center !important;
+      vertical-align: middle !important;
+      padding: 2px 4px !important;
+      height: 19px;
+      font-size: 9.5px;
+    }
+
+    .risk-header-cell {
+      font-weight: 800;
+      font-size: 9.5px;
+      text-align: center !important;
+      vertical-align: middle !important;
+      padding: 4px 6px !important;
+      line-height: 1.25;
+      letter-spacing: 0.3px;
     }
 
     .actions {
@@ -540,64 +552,71 @@
               </td>
             </tr>
 
-            <!-- ROW 9: LOWER SECTION HEADERS (PERFECT ALIGNMENT) -->
+            <!-- ROW 9: LOWER SECTION HEADERS -->
             <tr>
-              <td class="table-header">Impact on</td>
-              <td class="table-header">FI</td>
-              <td colspan="2" class="table-header" style="font-size:10px;">Horizontal Replication</td>
-              <td class="photo-heading">
+              <td class="th-sub">Impact on</td>
+              <td class="th-sub">FI</td>
+              <td colspan="2" class="th-sub" style="font-size:10px;">Horizontal Replication</td>
+              <td rowspan="2" class="risk-header-cell">
                 RISK ASSESSMENT - Demerit / MITIGATION
               </td>
             </tr>
 
-            <!-- ROW 10: AREA / DATE SUB HEADERS -->
+            <!-- ROW 10: AREA / DATE SUB-HEADERS -->
             <tr>
-              <td class="table-center"><b>P</b> <span id="pv-tickP"></span></td>
-              <td class="table-center"><b>AM</b> <span id="pv-tickAM"></span></td>
-              <td class="table-header">Area</td>
-              <td class="table-header">Target Date</td>
-              <td rowspan="6" style="vertical-align:top; padding:4px 6px;">
-                <div id="pv-risk" style="font-size:9.5px; white-space:pre-wrap;"></div>
-              </td>
+              <td class="td-cell"><b>P</b> <span id="pv-tickP"></span></td>
+              <td class="td-cell"><b>AM</b> <span id="pv-tickAM"></span></td>
+              <td class="th-sub">Area</td>
+              <td class="th-sub">Target Date</td>
             </tr>
 
             <!-- ROW 11: DATA 1 -->
             <tr>
-              <td class="table-center"><b>Q</b> <span id="pv-tickQ"></span></td>
-              <td class="table-center"><b>PM</b> <span id="pv-tickPM"></span></td>
-              <td class="table-center" id="pv-replicationArea1">&nbsp;</td>
-              <td class="table-center" id="pv-replicationDate1">&nbsp;</td>
+              <td class="td-cell"><b>Q</b> <span id="pv-tickQ"></span></td>
+              <td class="td-cell"><b>PM</b> <span id="pv-tickPM"></span></td>
+              <td class="td-cell" id="pv-replicationArea1">&nbsp;</td>
+              <td class="td-cell" id="pv-replicationDate1">&nbsp;</td>
+              <td rowspan="6" style="vertical-align:top; padding:6px 8px;">
+                <div id="pv-risk" style="font-size:9.5px; white-space:pre-wrap;"></div>
+              </td>
             </tr>
 
             <!-- ROW 12: DATA 2 -->
             <tr>
-              <td class="table-center"><b>C</b> <span id="pv-tickC"></span></td>
-              <td class="table-center"><b>EM</b> <span id="pv-tickEM"></span></td>
-              <td class="table-center" id="pv-replicationArea2">&nbsp;</td>
-              <td class="table-center" id="pv-replicationDate2">&nbsp;</td>
+              <td class="td-cell"><b>C</b> <span id="pv-tickC"></span></td>
+              <td class="td-cell"><b>EM</b> <span id="pv-tickEM"></span></td>
+              <td class="td-cell" id="pv-replicationArea2">&nbsp;</td>
+              <td class="td-cell" id="pv-replicationDate2">&nbsp;</td>
             </tr>
 
             <!-- ROW 13: DATA 3 -->
             <tr>
-              <td class="table-center"><b>D</b> <span id="pv-tickD"></span></td>
-              <td class="table-center"><b>QM</b> <span id="pv-tickQM"></span></td>
-              <td class="table-center" id="pv-replicationArea3">&nbsp;</td>
-              <td class="table-center" id="pv-replicationDate3">&nbsp;</td>
+              <td class="td-cell"><b>D</b> <span id="pv-tickD"></span></td>
+              <td class="td-cell"><b>QM</b> <span id="pv-tickQM"></span></td>
+              <td class="td-cell" id="pv-replicationArea3">&nbsp;</td>
+              <td class="td-cell" id="pv-replicationDate3">&nbsp;</td>
             </tr>
 
             <!-- ROW 14: DATA 4 -->
             <tr>
-              <td class="table-center"><b>S</b> <span id="pv-tickS"></span></td>
-              <td class="table-center"><b>OTPM</b> <span id="pv-tickOTPM"></span></td>
-              <td class="table-center" id="pv-replicationArea4">&nbsp;</td>
-              <td class="table-center" id="pv-replicationDate4">&nbsp;</td>
+              <td class="td-cell"><b>S</b> <span id="pv-tickS"></span></td>
+              <td class="td-cell"><b>OTPM</b> <span id="pv-tickOTPM"></span></td>
+              <td class="td-cell" id="pv-replicationArea4">&nbsp;</td>
+              <td class="td-cell" id="pv-replicationDate4">&nbsp;</td>
             </tr>
 
-            <!-- ROW 15: FINAL BOTTOM ROW -->
+            <!-- ROW 15: DATA 5 -->
             <tr>
-              <td class="table-center"><b>M</b> <span id="pv-tickM"></span></td>
-              <td class="table-center"><b>SHE</b> <span id="pv-tickSHE"></span></td>
-              <td class="table-center" colspan="2" style="background:#fcfcfc;"></td>
+              <td class="td-cell"><b>M</b> <span id="pv-tickM"></span></td>
+              <td class="td-cell"><b>SHE</b> <span id="pv-tickSHE"></span></td>
+              <td class="td-cell" colspan="2" style="background:#ffffff;"></td>
+            </tr>
+
+            <!-- ROW 16: DATA 6 (T&D) -->
+            <tr>
+              <td class="td-cell"></td>
+              <td class="td-cell"><b>T&D</b> <span id="pv-tickTD"></span></td>
+              <td class="td-cell" colspan="2" style="background:#ffffff;"></td>
             </tr>
 
           </table>
