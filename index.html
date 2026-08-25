@@ -250,30 +250,60 @@
       word-break: break-word;
     }
 
-    /* Photo Section Headers */
-    .photo-header-cell {
+    /* Outer Container for Split Column */
+    .outer-split-cell {
       padding: 0 !important;
+      vertical-align: top !important;
+    }
+
+    .inner-table {
+      width: 100%;
+      height: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .inner-table td, .inner-table th {
+      border: 1.5px solid #111;
+      padding: 4px 6px;
+      vertical-align: top;
+    }
+
+    /* Photo Box & Section Title Styling */
+    .section-title-bar {
+      height: 24px;
       background: #ffffff;
-      height: 22px;
+      border: none !important;
+      border-bottom: 1.5px solid #111 !important;
+      font-size: 10px;
+      font-weight: 900;
       text-align: center;
       vertical-align: middle !important;
-      font-size: 9px;
-      font-weight: 900;
       letter-spacing: 0.5px;
+      padding: 2px 4px !important;
+    }
+
+    .photo-cell-container {
+      height: 285px;
+      padding: 0 !important;
+      vertical-align: top !important;
     }
 
     .photo-box {
+      width: 100%;
+      height: calc(100% - 24px);
       text-align: center;
-      vertical-align: middle !important;
       background: #f8fafc;
       overflow: hidden;
       position: relative;
-      padding: 4px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .photo-box img {
       max-width: 96%;
-      max-height: 230px;
+      max-height: 250px;
       width: auto;
       height: auto;
       object-fit: contain;
@@ -283,13 +313,13 @@
     }
 
     .photo-box .placeholder {
-      color: #aaa;
+      color: #888;
       font-size: 11px;
       font-weight: 700;
     }
 
     .big-cell {
-      min-height: 90px;
+      min-height: 80px;
     }
 
     /* Impact Table */
@@ -312,12 +342,6 @@
     }
 
     /* Final Row */
-    .final-section-cell {
-      padding: 0 !important;
-      vertical-align: top !important;
-      background: #ffffff !important;
-    }
-
     .replication-table {
       width: 100%;
       border-collapse: collapse;
@@ -365,15 +389,15 @@
 
     .risk-assessment-title {
       width: 100%;
-      height: 34px;
-      border-bottom: 1px solid #111;
+      height: 35px;
+      border-bottom: 1.5px solid #111;
       background: #ffffff;
       color: #000;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 900;
       padding: 2px 4px;
     }
@@ -680,125 +704,143 @@
               </td>
             </tr>
 
-            <!-- ROW 2: PHOTO BEFORE HEADER -->
+            <!-- ROW 2: MAIN BODY SPLIT INTO 2 EQUAL VERTICAL SECTIONS -->
             <tr>
-              <td style="width:16%; height:48px;">
-                <span class="field-label">Theme/loss category :</span>
-                <br>
-                <span class="field-value" id="pv-theme"></span>
-              </td>
-              <td style="width:16%; height:48px;">
-                <span class="field-label">Location ( 5S Zone/Circle /Equipment ):</span>
-                <br>
-                <span class="field-value" id="pv-location"></span>
-              </td>
-              <td style="width:12%; padding:0;">
-                <table style="width:100%; border-collapse:collapse; height:100%;">
+              <!-- LEFT CONTENT SECTION -->
+              <td colspan="3" class="outer-split-cell" style="width: 50%;">
+                <table class="inner-table" style="border:none;">
                   <tr>
-                    <td style="border:none; border-bottom:1.5px solid #111; height:24px; padding:3px 5px;">
-                      <span class="field-label">Started On :</span>
-                      <span class="field-value" id="pv-startedOn"></span>
+                    <td style="width:33%; height:48px; border-top:none; border-left:none;">
+                      <span class="field-label">Theme/loss category :</span>
+                      <br>
+                      <span class="field-value" id="pv-theme"></span>
+                    </td>
+                    <td style="width:33%; height:48px; border-top:none;">
+                      <span class="field-label">Location ( 5S Zone/Circle /Equipment ):</span>
+                      <br>
+                      <span class="field-value" id="pv-location"></span>
+                    </td>
+                    <td style="width:34%; padding:0; border-top:none;">
+                      <table style="width:100%; border-collapse:collapse; height:100%;">
+                        <tr>
+                          <td style="border:none; border-bottom:1.5px solid #111; height:24px; padding:3px 5px;">
+                            <span class="field-label">Started On :</span>
+                            <span class="field-value" id="pv-startedOn"></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td style="border:none; height:24px; padding:3px 5px;">
+                            <span class="field-label">Completed On :</span>
+                            <span class="field-value" id="pv-completedOn"></span>
+                          </td>
+                        </tr>
+                      </table>
                     </td>
                   </tr>
+
                   <tr>
-                    <td style="border:none; height:24px; padding:3px 5px;">
-                      <span class="field-label">Completed On :</span>
-                      <span class="field-value" id="pv-completedOn"></span>
+                    <td style="border-left:none;">
+                      <span class="field-label">Leader/Members :</span>
+                      <br>
+                      <span class="field-value" id="pv-leaderMembers" style="white-space:pre-wrap;"></span>
+                    </td>
+                    <td colspan="2" style="min-height:80px;">
+                      <span class="field-label">Root Cause Analysis (Why-Why) : Ref No -</span>
+                      <span class="field-value" id="pv-rcaRef"></span>
+                      <br>
+                      <span class="field-value" id="pv-rcaDetails" style="white-space:pre-wrap;"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="big-cell" style="border-left:none;">
+                      <span class="field-label">Background ( Before ) :</span>
+                      <br>
+                      <span class="field-value" id="pv-background" style="white-space:pre-wrap;"></span>
+                    </td>
+                    <td colspan="2" class="big-cell">
+                      <span class="field-label">Problem Description:</span>
+                      <br>
+                      <span class="field-value" id="pv-problem" style="white-space:pre-wrap;"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td rowspan="3" class="big-cell" style="border-left:none;">
+                      <span class="field-label">Jobs /Impr Carried Out ( WorkOrder Ref ) :</span>
+                      <br>
+                      <span class="field-value" id="pv-jobs" style="white-space:pre-wrap;"></span>
+                    </td>
+                    <td colspan="2">
+                      <span class="field-label">Bench Mark :</span>
+                      <span class="field-value" id="pv-benchmark" style="white-space:pre-wrap;"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2" style="min-height:45px;">
+                      <span class="field-label">Targets :</span>
+                      <br>
+                      <span class="field-value" id="pv-targets" style="white-space:pre-wrap;"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="2" style="min-height:45px;">
+                      <span class="field-label">Results :</span>
+                      <br>
+                      <span class="field-value" id="pv-results" style="white-space:pre-wrap;"></span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="min-height:55px; border-left:none; border-bottom:none;">
+                      <span class="field-label">After Advantage :</span>
+                      <br>
+                      <span class="field-value" id="pv-advantage" style="white-space:pre-wrap;"></span>
+                    </td>
+                    <td colspan="2" style="min-height:55px; border-bottom:none;">
+                      <span class="field-label">Benefit :After Kaizen How Much Gain (Bdt):</span>
+                      <br>
+                      <span class="field-value" id="pv-benefitBdt" style="white-space:pre-wrap;"></span>
                     </td>
                   </tr>
                 </table>
               </td>
-              <td colspan="3" class="photo-header-cell">
-                SKETCH / PHOTO BEFORE
+
+              <!-- RIGHT PHOTO SECTION (EXACT 50% SPLIT INTO BEFORE & AFTER) -->
+              <td colspan="3" class="outer-split-cell" style="width: 50%;">
+                <table class="inner-table" style="border:none;">
+                  <!-- BEFORE PHOTO FULL CONTAINER -->
+                  <tr>
+                    <td class="photo-cell-container" style="border-top:none; border-right:none; border-left:none;">
+                      <div class="section-title-bar">
+                        SKETCH / PHOTO BEFORE
+                      </div>
+                      <div class="photo-box" id="pv-beforeBox">
+                        <div class="placeholder">SKETCH / PHOTO BEFORE</div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- AFTER PHOTO FULL CONTAINER -->
+                  <tr>
+                    <td class="photo-cell-container" style="border-bottom:none; border-right:none; border-left:none;">
+                      <div class="section-title-bar">
+                        SKETCH / PHOTO AFTER
+                      </div>
+                      <div class="photo-box" id="pv-afterBox">
+                        <div class="placeholder">SKETCH / PHOTO AFTER</div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
               </td>
             </tr>
 
-            <!-- ROW 3: PHOTO BEFORE IMAGE BOX -->
+            <!-- ROW 3: FULL WIDTH IMPACT ON FI -->
             <tr>
-              <td>
-                <span class="field-label">Leader/Members :</span>
-                <br>
-                <span class="field-value" id="pv-leaderMembers" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="2" style="min-height:80px;">
-                <span class="field-label">Root Cause Analysis (Why-Why) : Ref No -</span>
-                <span class="field-value" id="pv-rcaRef"></span>
-                <br>
-                <span class="field-value" id="pv-rcaDetails" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="3" rowspan="2" class="photo-box" id="pv-beforeBox">
-                <div class="placeholder">PHOTO BEFORE</div>
-              </td>
-            </tr>
-
-            <!-- ROW 4: BACKGROUND & PROBLEM -->
-            <tr>
-              <td class="big-cell" style="min-height:100px;">
-                <span class="field-label">Background ( Before ) :</span>
-                <br>
-                <span class="field-value" id="pv-background" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="2" class="big-cell" style="min-height:100px;">
-                <span class="field-label">Problem Description:</span>
-                <br>
-                <span class="field-value" id="pv-problem" style="white-space:pre-wrap;"></span>
-              </td>
-            </tr>
-
-            <!-- ROW 5: PHOTO AFTER HEADER -->
-            <tr>
-              <td rowspan="4" class="big-cell" style="min-height:160px;">
-                <span class="field-label">Jobs /Impr Carried Out ( WorkOrder Ref ) :</span>
-                <br>
-                <span class="field-value" id="pv-jobs" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="2">
-                <span class="field-label">Bench Mark :</span>
-                <span class="field-value" id="pv-benchmark" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="3" class="photo-header-cell">
-                SKETCH / PHOTO AFTER
-              </td>
-            </tr>
-
-            <!-- ROW 6: PHOTO AFTER IMAGE BOX (Spans down to Risk Assessment) -->
-            <tr>
-              <td colspan="2" style="min-height:50px;">
-                <span class="field-label">Targets :</span>
-                <br>
-                <span class="field-value" id="pv-targets" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="3" rowspan="4" class="photo-box" id="pv-afterBox">
-                <div class="placeholder">PHOTO AFTER</div>
-              </td>
-            </tr>
-
-            <!-- ROW 7: RESULTS -->
-            <tr>
-              <td colspan="2" style="min-height:50px;">
-                <span class="field-label">Results :</span>
-                <br>
-                <span class="field-value" id="pv-results" style="white-space:pre-wrap;"></span>
-              </td>
-            </tr>
-
-            <!-- ROW 8: ADVANTAGE & BENEFIT -->
-            <tr>
-              <td colspan="2" style="min-height:55px;">
-                <span class="field-label">Benefit :After Kaizen How Much Gain (Bdt):</span>
-                <br>
-                <span class="field-value" id="pv-benefitBdt" style="white-space:pre-wrap;"></span>
-              </td>
-            </tr>
-
-            <!-- ROW 9: AFTER ADVANTAGE & IMPACT TABLE -->
-            <tr>
-              <td style="min-height:55px;">
-                <span class="field-label">After Advantage :</span>
-                <br>
-                <span class="field-value" id="pv-advantage" style="white-space:pre-wrap;"></span>
-              </td>
-              <td colspan="2" style="padding:0;">
+              <td colspan="6" style="padding:0;">
                 <table class="impact-table">
                   <tr>
                     <th style="width:45px; font-size:9px;">Impact on</th>
@@ -852,9 +894,9 @@
               </td>
             </tr>
 
-            <!-- ROW 10: BOTTOM SECTION (HORIZONTAL REPLICATION + RISK ASSESSMENT) -->
+            <!-- ROW 4: FINAL BOTTOM ROW (HORIZONTAL REPLICATION & RISK ASSESSMENT) -->
             <tr>
-              <td colspan="3" class="final-section-cell">
+              <td colspan="3" class="outer-split-cell" style="width: 50%;">
                 <table class="replication-table">
                   <tr>
                     <th colspan="2" class="replication-main-header">
@@ -884,7 +926,7 @@
                 </table>
               </td>
 
-              <td colspan="3" class="risk-assessment-cell">
+              <td colspan="3" class="risk-assessment-cell" style="width: 50%;">
                 <div class="risk-assessment-title">
                   RISK ASSESSMENT - Demerit / MITIGATION
                 </div>
