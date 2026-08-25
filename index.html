@@ -7,8 +7,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
   <style>
     :root {
-      --yellow: #FFEB3B;
-      --dark-yellow: #FBC02D;
+      --accent: #2563eb;
+      --accent-dark: #1d4ed8;
       --black: #1a1a1a;
     }
 
@@ -16,7 +16,7 @@
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background: #e8e8e8;
+      background: #f1f5f9;
       color: var(--black);
       min-height: 100vh;
     }
@@ -25,7 +25,7 @@
       background: #1a1a1a;
       color: white;
       padding: 14px 24px;
-      border-bottom: 4px solid var(--dark-yellow);
+      border-bottom: 4px solid var(--accent);
     }
 
     .logo {
@@ -34,7 +34,7 @@
       letter-spacing: -0.5px;
     }
 
-    .logo span { color: var(--dark-yellow); }
+    .logo span { color: var(--accent); }
 
     .top-bar p {
       font-size: 0.85rem;
@@ -90,8 +90,8 @@
 
     input:focus, textarea:focus {
       outline: none;
-      border-color: var(--dark-yellow);
-      box-shadow: 0 0 0 3px rgba(251,192,45,0.25);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.2);
     }
 
     textarea {
@@ -150,8 +150,8 @@
     }
 
     .photo-upload:hover {
-      border-color: var(--dark-yellow);
-      background: #fffef5;
+      border-color: var(--accent);
+      background: #eff6ff;
     }
 
     .photo-upload.has-image {
@@ -161,9 +161,12 @@
 
     .photo-upload img {
       max-width: 100%;
-      max-height: 130px;
+      max-height: 140px;
+      width: auto;
+      height: auto;
       border-radius: 4px;
       object-fit: contain;
+      object-position: center;
     }
 
     .photo-upload input { display: none; }
@@ -210,7 +213,7 @@
 
     #kaizen-form {
       width: 900px;
-      background: var(--yellow);
+      background: #ffffff;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 11px;
       color: #000;
@@ -233,7 +236,7 @@
       font-weight: 900;
       text-align: center;
       letter-spacing: 1px;
-      padding: 8px !important;
+      padding: 6px !important;
     }
 
     .field-label {
@@ -248,25 +251,37 @@
     }
 
     .photo-box {
-      height: 180px;
+      height: 220px;
       text-align: center;
       vertical-align: middle !important;
-      background: #fffde7;
+      background: #f8fafc;
+      overflow: hidden;
+      position: relative;
     }
 
     .photo-box img {
-      max-width: 98%;
-      max-height: 170px;
+      max-width: 96%;
+      max-height: 210px;
+      width: auto;
+      height: auto;
       object-fit: contain;
+      object-position: center;
+      display: block;
+      margin: 5px auto;
     }
 
     .photo-box .placeholder {
       color: #888;
       font-size: 12px;
       font-weight: 700;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
     }
 
-    .big-cell { min-height: 55px; }
+    .big-cell { min-height: 90px; }
 
     .impact-table {
       width: 100%;
@@ -281,7 +296,7 @@
     }
 
     .impact-table th {
-      background: #fff9c4;
+      background: #f1f5f9;
       font-weight: 700;
     }
 
@@ -310,11 +325,11 @@
     .btn-download:hover { background: #333; }
 
     .btn-whatsapp {
-      background: var(--dark-yellow);
-      color: #111;
+      background: var(--accent);
+      color: white;
     }
 
-    .btn-whatsapp:hover { background: #f9a825; }
+    .btn-whatsapp:hover { background: var(--accent-dark); color: white; }
 
     .btn:disabled {
       opacity: 0.6;
@@ -425,20 +440,23 @@
       </div>
 
       <div class="field-card">
-        <label>Impact on (P Q C D S M)</label>
+        <label>Impact on FI (P Q C D S M)</label>
+        <div style="font-size:0.78rem; color:#555; margin-bottom:8px;">
+          FI Categories: AM &nbsp; PM &nbsp; EM &nbsp; QM &nbsp; OTPM &nbsp; SHE &nbsp; T&D
+        </div>
         <div class="impact-grid">
           <div class="impact-row-label">P</div>
-          <input type="text" id="impactP" placeholder="Productivity..." />
+          <input type="text" id="impactP" placeholder="e.g. AM / Productivity impact..." />
           <div class="impact-row-label">Q</div>
-          <input type="text" id="impactQ" placeholder="Quality..." />
+          <input type="text" id="impactQ" placeholder="e.g. PM / Quality impact..." />
           <div class="impact-row-label">C</div>
-          <input type="text" id="impactC" placeholder="Cost..." />
+          <input type="text" id="impactC" placeholder="e.g. EM / Cost impact..." />
           <div class="impact-row-label">D</div>
-          <input type="text" id="impactD" placeholder="Delivery..." />
+          <input type="text" id="impactD" placeholder="e.g. QM / Delivery impact..." />
           <div class="impact-row-label">S</div>
-          <input type="text" id="impactS" placeholder="Safety..." />
+          <input type="text" id="impactS" placeholder="e.g. OTPM / Safety impact..." />
           <div class="impact-row-label">M</div>
-          <input type="text" id="impactM" placeholder="Morale..." />
+          <input type="text" id="impactM" placeholder="e.g. SHE / Morale impact..." />
         </div>
       </div>
 
@@ -488,20 +506,29 @@
             </tr>
 
             <tr>
-              <td style="width:18%;">
+              <td style="width:16%; height:48px;">
                 <span class="field-label">Theme/loss category :</span><br>
                 <span class="field-value" id="pv-theme"></span>
               </td>
-              <td style="width:18%;">
+              <td style="width:16%; height:48px;">
                 <span class="field-label">Location ( 5S Zone/Circle /Equipment ):</span><br>
                 <span class="field-value" id="pv-location"></span>
               </td>
-              <td style="width:14%;">
-                <span class="field-label">Started On :</span><br>
-                <span class="field-value" id="pv-startedOn"></span>
-                <br><br>
-                <span class="field-label">Completed On :</span><br>
-                <span class="field-value" id="pv-completedOn"></span>
+              <td style="width:12%; padding:0;">
+                <table style="width:100%; border-collapse:collapse; height:100%;">
+                  <tr>
+                    <td style="border:none; border-bottom:1.5px solid #111; height:24px; padding:3px 5px;">
+                      <span class="field-label">Started On :</span>
+                      <span class="field-value" id="pv-startedOn"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="border:none; height:24px; padding:3px 5px;">
+                      <span class="field-label">Completed On :</span>
+                      <span class="field-value" id="pv-completedOn"></span>
+                    </td>
+                  </tr>
+                </table>
               </td>
               <td colspan="3" rowspan="2" class="photo-box" id="pv-beforeBox">
                 <div class="placeholder">SKETCH/ PHOTO BEFORE</div>
@@ -513,7 +540,7 @@
                 <span class="field-label">Leader/Members :</span><br>
                 <span class="field-value" id="pv-leaderMembers" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="2">
+              <td colspan="2" style="min-height:80px;">
                 <span class="field-label">Root Cause Analysis (Why-Why) : Ref No -</span>
                 <span class="field-value" id="pv-rcaRef"></span><br>
                 <span class="field-value" id="pv-rcaDetails" style="white-space:pre-wrap;"></span>
@@ -521,11 +548,11 @@
             </tr>
 
             <tr>
-              <td class="big-cell">
+              <td class="big-cell" style="min-height:100px;">
                 <span class="field-label">Background ( Before ) :</span><br>
                 <span class="field-value" id="pv-background" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="2" class="big-cell">
+              <td colspan="2" class="big-cell" style="min-height:100px;">
                 <span class="field-label">Problem Description:</span><br>
                 <span class="field-value" id="pv-problem" style="white-space:pre-wrap;"></span>
               </td>
@@ -535,7 +562,7 @@
             </tr>
 
             <tr>
-              <td rowspan="3" class="big-cell">
+              <td rowspan="3" class="big-cell" style="min-height:120px;">
                 <span class="field-label">Jobs /Impr Carried Out ( WorkOrder Ref ) :</span><br>
                 <span class="field-value" id="pv-jobs" style="white-space:pre-wrap;"></span>
               </td>
@@ -545,24 +572,24 @@
               </td>
             </tr>
             <tr>
-              <td colspan="2">
+              <td colspan="2" style="min-height:50px;">
                 <span class="field-label">Targets :</span><br>
                 <span class="field-value" id="pv-targets" style="white-space:pre-wrap;"></span>
               </td>
             </tr>
             <tr>
-              <td colspan="2">
+              <td colspan="2" style="min-height:50px;">
                 <span class="field-label">Results :</span><br>
                 <span class="field-value" id="pv-results" style="white-space:pre-wrap;"></span>
               </td>
             </tr>
 
             <tr>
-              <td>
+              <td style="min-height:55px;">
                 <span class="field-label">After Advantage :</span><br>
                 <span class="field-value" id="pv-advantage" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="2">
+              <td colspan="2" style="min-height:55px;">
                 <span class="field-label">Benefit :After Kaizen How Much Gain (Bdt):</span><br>
                 <span class="field-value" id="pv-benefitBdt" style="white-space:pre-wrap;"></span>
               </td>
@@ -576,44 +603,49 @@
               <td colspan="3" style="padding:0;">
                 <table class="impact-table">
                   <tr>
-                    <th style="width:30px;">Impact on</th>
-                    <th>FI</th>
+                    <th style="width:55px; font-size:9px;">Impact on</th>
+                    <th style="width:40px;">FI</th>
+                    <th style="min-width:90px;"></th>
                     <th colspan="3">Horizontal Replication</th>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">P</td>
-                    <td id="pv-impactP" style="text-align:left; padding-left:6px;"></td>
-                    <td rowspan="2" style="width:80px; font-weight:700;">Area</td>
-                    <td rowspan="2" id="pv-replicationArea" style="text-align:left;"></td>
-                    <td rowspan="2" style="width:90px;">
-                      <strong>Target Date</strong><br>
-                      <span id="pv-replicationDate"></span>
-                    </td>
+                    <td style="font-weight:700;">AM</td>
+                    <td id="pv-impactP" style="text-align:left; padding-left:4px;"></td>
+                    <td style="font-weight:700; width:45px;">Area</td>
+                    <td id="pv-replicationArea" style="text-align:left; min-width:80px;"></td>
+                    <td style="font-weight:700; width:70px;">Target Date</td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">Q</td>
-                    <td id="pv-impactQ" style="text-align:left; padding-left:6px;"></td>
+                    <td style="font-weight:700;">PM</td>
+                    <td id="pv-impactQ" style="text-align:left; padding-left:4px;"></td>
+                    <td colspan="2" rowspan="5"></td>
+                    <td id="pv-replicationDate" rowspan="5" style="vertical-align:top;"></td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">C</td>
-                    <td id="pv-impactC" style="text-align:left; padding-left:6px;"></td>
-                    <td colspan="3" rowspan="4"></td>
+                    <td style="font-weight:700;">EM</td>
+                    <td id="pv-impactC" style="text-align:left; padding-left:4px;"></td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">D</td>
-                    <td id="pv-impactD" style="text-align:left; padding-left:6px;"></td>
+                    <td style="font-weight:700;">QM</td>
+                    <td id="pv-impactD" style="text-align:left; padding-left:4px;"></td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">S</td>
-                    <td id="pv-impactS" style="text-align:left; padding-left:6px;"></td>
+                    <td style="font-weight:700;">OTPM</td>
+                    <td id="pv-impactS" style="text-align:left; padding-left:4px;"></td>
                   </tr>
                   <tr>
                     <td style="font-weight:700;">M</td>
-                    <td id="pv-impactM" style="text-align:left; padding-left:6px;"></td>
+                    <td style="font-weight:700;">SHE<br>T&D</td>
+                    <td id="pv-impactM" style="text-align:left; padding-left:4px;"></td>
                   </tr>
                 </table>
               </td>
-              <td colspan="3" style="background:#fff9c4;"></td>
+              <td colspan="3" style="background:#f1f5f9;"></td>
             </tr>
           </table>
         </div>
@@ -705,7 +737,7 @@
         const canvas = await html2canvas(form, {
           scale: 2,
           useCORS: true,
-          backgroundColor: '#FFEB3B',
+          backgroundColor: '#ffffff',
           logging: false,
         });
         const link = document.createElement('a');
@@ -728,7 +760,7 @@
         const canvas = await html2canvas(form, {
           scale: 2,
           useCORS: true,
-          backgroundColor: '#FFEB3B',
+          backgroundColor: '#ffffff',
           logging: false,
         });
         canvas.toBlob(async (blob) => {
