@@ -140,12 +140,12 @@
 
     .preview-wrapper {
       background: white;
-      padding: 2px;
       box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      border: 2px solid #000;
     }
 
     /* =========================================================
-       EXACT SHEET GRID RECONSTRUCTION
+       CLEAN UNIFIED TABLE STYLES
        ========================================================= */
     #kaizen-form {
       width: 1100px;
@@ -153,7 +153,7 @@
       font-family: Arial, Helvetica, sans-serif;
       font-size: 10px;
       color: #000;
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     .k-table {
@@ -165,19 +165,20 @@
     .k-table td, 
     .k-table th {
       border: 1.5px solid #000;
-      padding: 3px 5px;
+      padding: 4px 6px;
       vertical-align: top;
       background: #ffffff;
       color: #000;
+      word-break: break-word;
     }
 
     .k-title {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 900;
       text-align: center;
       vertical-align: middle !important;
       letter-spacing: 0.5px;
-      padding: 5px !important;
+      padding: 6px !important;
     }
 
     .lbl {
@@ -187,25 +188,23 @@
 
     .val {
       font-size: 9.5px;
-      word-break: break-word;
     }
 
-    /* Photo Banner Headers */
     .photo-heading {
       text-align: center;
       font-weight: 800;
       font-size: 9.5px;
       letter-spacing: 0.5px;
       vertical-align: middle !important;
-      padding: 4px 2px !important;
-      height: 20px;
+      padding: 5px 2px !important;
+      height: 24px;
     }
 
     .photo-cell {
       text-align: center;
       vertical-align: middle !important;
       background: #ffffff !important;
-      padding: 3px !important;
+      padding: 4px !important;
     }
 
     .photo-cell img {
@@ -218,30 +217,26 @@
     }
 
     .photo-placeholder {
-      color: #aaa;
+      color: #bbb;
       font-weight: 700;
-      font-size: 10px;
+      font-size: 11px;
     }
 
-    /* Sub-Tables inside Cells */
-    .sub-table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-      margin: -3px -5px;
-      width: calc(100% + 10px);
+    /* Lower Section Specific Alignment */
+    .table-center {
+      text-align: center !important;
+      vertical-align: middle !important;
+      padding: 2px 4px !important;
+      height: 19px;
     }
 
-    .sub-table td, 
-    .sub-table th {
-      border: 1px solid #000;
-      padding: 2px 3px;
-      font-size: 9px;
-      text-align: center;
-    }
-
-    .sub-table th {
+    .table-header {
       font-weight: 800;
+      font-size: 9px;
+      text-align: center !important;
+      vertical-align: middle !important;
+      padding: 2px 4px !important;
+      height: 20px;
     }
 
     .actions {
@@ -424,43 +419,43 @@
         <div id="kaizen-form">
           <table class="k-table">
             <colgroup>
-              <col style="width: 26%;">
+              <col style="width: 13%;">
+              <col style="width: 13%;">
               <col style="width: 24%;">
-              <col style="width: 14%;">
-              <col style="width: 14%;">
-              <col style="width: 22%;">
+              <col style="width: 25%;">
+              <col style="width: 25%;">
             </colgroup>
 
             <!-- ROW 1: HEADER -->
             <tr>
               <td colspan="3" class="k-title">KAIZEN FORM</td>
               <td colspan="2">
-                <span class="lbl">Project Ref /Description :</span>
+                <span class="lbl">Project Ref /Description : </span>
                 <span class="val" id="pv-projectRef"></span>
               </td>
             </tr>
 
             <!-- ROW 2: THEME, LOCATION, DATES, PHOTO BEFORE HEADER -->
             <tr>
-              <td>
-                <span class="lbl">Theme/loss category :</span>
+              <td colspan="2">
+                <span class="lbl">Theme/loss category : </span>
                 <span class="val" id="pv-theme"></span>
               </td>
               <td>
                 <span class="lbl">Location ( 5S Zone/Circle /Equipment ):</span><br>
                 <span class="val" id="pv-location"></span>
               </td>
-              <td colspan="2" style="padding: 0;">
-                <table style="width:100%; height:100%; border-collapse:collapse;">
+              <td style="padding: 0;">
+                <table style="width:100%; height:100%; border-collapse:collapse; margin:0;">
                   <tr>
                     <td style="border:none; border-bottom:1.5px solid #000; padding:2px 4px;">
-                      <span class="lbl">Started On :</span>
+                      <span class="lbl">Started On : </span>
                       <span class="val" id="pv-startedOn"></span>
                     </td>
                   </tr>
                   <tr>
                     <td style="border:none; padding:2px 4px;">
-                      <span class="lbl">Completed On :</span>
+                      <span class="lbl">Completed On : </span>
                       <span class="val" id="pv-completedOn"></span>
                     </td>
                   </tr>
@@ -473,27 +468,27 @@
 
             <!-- ROW 3: LEADER, RCA, BEFORE PHOTO BOX -->
             <tr>
-              <td style="height: 110px;">
-                <span class="lbl">Leader/Members :</span><br>
+              <td colspan="2" style="height: 110px;">
+                <span class="lbl">Leader/Members : </span><br>
                 <span class="val" id="pv-leaderMembers" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="3">
-                <span class="lbl">Root Cause Analysis (Why-Why) : Ref No -</span>
+              <td colspan="2">
+                <span class="lbl">Root Cause Analysis (Why-Why) : Ref No - </span>
                 <span class="val" id="pv-rcaRef"></span><br>
                 <span class="val" id="pv-rcaDetails" style="white-space:pre-wrap;"></span>
               </td>
-              <td rowspan="2" class="photo-cell" id="pv-beforeBox" style="height: 200px;">
+              <td rowspan="2" class="photo-cell" id="pv-beforeBox" style="height: 195px;">
                 <div class="photo-placeholder">BEFORE PHOTO</div>
               </td>
             </tr>
 
             <!-- ROW 4: BACKGROUND, PROBLEM -->
             <tr>
-              <td style="height: 85px;">
-                <span class="lbl">Background ( Before ) :</span>
+              <td colspan="2" style="height: 85px;">
+                <span class="lbl">Background ( Before ) : </span>
                 <span class="val" id="pv-background" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="3">
+              <td colspan="2">
                 <span class="lbl">Problem Description:</span><br>
                 <span class="val" id="pv-problem" style="white-space:pre-wrap;"></span>
               </td>
@@ -501,12 +496,12 @@
 
             <!-- ROW 5: JOBS, BENCHMARK, PHOTO AFTER HEADER -->
             <tr>
-              <td rowspan="3">
+              <td colspan="2" rowspan="3">
                 <span class="lbl">Jobs /Impr Carried Out ( WorkOrder Ref ) :</span><br>
                 <span class="val" id="pv-jobs" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="3">
-                <span class="lbl">Bench Mark :</span>
+              <td colspan="2">
+                <span class="lbl">Bench Mark : </span>
                 <span class="val" id="pv-benchmark"></span>
               </td>
               <td class="photo-heading">
@@ -516,78 +511,93 @@
 
             <!-- ROW 6: TARGETS, AFTER PHOTO BOX -->
             <tr>
-              <td colspan="3" style="height: 45px;">
-                <span class="lbl">Targets :</span><br>
+              <td colspan="2" style="height: 40px;">
+                <span class="lbl">Targets : </span><br>
                 <span class="val" id="pv-targets" style="white-space:pre-wrap;"></span>
               </td>
-              <td rowspan="3" class="photo-cell" id="pv-afterBox" style="height: 210px;">
+              <td rowspan="3" class="photo-cell" id="pv-afterBox" style="height: 200px;">
                 <div class="photo-placeholder">AFTER PHOTO</div>
               </td>
             </tr>
 
             <!-- ROW 7: RESULTS -->
             <tr>
-              <td colspan="3" style="height: 75px;">
-                <span class="lbl">Results :</span><br>
+              <td colspan="2" style="height: 75px;">
+                <span class="lbl">Results : </span><br>
                 <span class="val" id="pv-results" style="white-space:pre-wrap;"></span>
               </td>
             </tr>
 
             <!-- ROW 8: ADVANTAGE & BENEFIT -->
             <tr>
-              <td style="height: 60px;">
-                <span class="lbl">After Advantage :</span><br>
+              <td colspan="2" style="height: 60px;">
+                <span class="lbl">After Advantage : </span><br>
                 <span class="val" id="pv-advantage" style="white-space:pre-wrap;"></span>
               </td>
-              <td colspan="3">
+              <td colspan="2">
                 <span class="lbl">Benefit :After Kaizen How Much Gain (Bdt):</span><br>
                 <span class="val" id="pv-benefitBdt" style="white-space:pre-wrap;"></span>
               </td>
             </tr>
 
-            <!-- ROW 9: IMPACT TABLE & HORIZONTAL REPLICATION & RISK HEADER -->
+            <!-- ROW 9: LOWER SECTION HEADERS (PERFECT ALIGNMENT) -->
             <tr>
-              <!-- Impact Column -->
-              <td style="padding:0;">
-                <table class="sub-table">
-                  <tr>
-                    <th style="width:50%;">Impact on</th>
-                    <th style="width:50%;">FI</th>
-                  </tr>
-                  <tr><td>P <span id="pv-tickP"></span></td><td>AM <span id="pv-tickAM"></span></td></tr>
-                  <tr><td>Q <span id="pv-tickQ"></span></td><td>PM <span id="pv-tickPM"></span></td></tr>
-                  <tr><td>C <span id="pv-tickC"></span></td><td>EM <span id="pv-tickEM"></span></td></tr>
-                  <tr><td>D <span id="pv-tickD"></span></td><td>QM <span id="pv-tickQM"></span></td></tr>
-                  <tr><td>S <span id="pv-tickS"></span></td><td>OTPM <span id="pv-tickOTPM"></span></td></tr>
-                  <tr><td>M <span id="pv-tickM"></span></td><td>SHE <span id="pv-tickSHE"></span></td></tr>
-                  <tr><td></td><td>T&D <span id="pv-tickTD"></span></td></tr>
-                </table>
+              <td class="table-header">Impact on</td>
+              <td class="table-header">FI</td>
+              <td colspan="2" class="table-header" style="font-size:10px;">Horizontal Replication</td>
+              <td class="photo-heading">
+                RISK ASSESSMENT - Demerit / MITIGATION
               </td>
+            </tr>
 
-              <!-- Horizontal Replication Column -->
-              <td colspan="3" style="padding:0;">
-                <table class="sub-table" style="height:100%;">
-                  <tr>
-                    <th colspan="2">Horizontal Replication</th>
-                  </tr>
-                  <tr>
-                    <th>Area</th>
-                    <th>Target Date</th>
-                  </tr>
-                  <tr><td id="pv-replicationArea1">&nbsp;</td><td id="pv-replicationDate1">&nbsp;</td></tr>
-                  <tr><td id="pv-replicationArea2">&nbsp;</td><td id="pv-replicationDate2">&nbsp;</td></tr>
-                  <tr><td id="pv-replicationArea3">&nbsp;</td><td id="pv-replicationDate3">&nbsp;</td></tr>
-                  <tr><td id="pv-replicationArea4">&nbsp;</td><td id="pv-replicationDate4">&nbsp;</td></tr>
-                </table>
+            <!-- ROW 10: AREA / DATE SUB HEADERS -->
+            <tr>
+              <td class="table-center"><b>P</b> <span id="pv-tickP"></span></td>
+              <td class="table-center"><b>AM</b> <span id="pv-tickAM"></span></td>
+              <td class="table-header">Area</td>
+              <td class="table-header">Target Date</td>
+              <td rowspan="6" style="vertical-align:top; padding:4px 6px;">
+                <div id="pv-risk" style="font-size:9.5px; white-space:pre-wrap;"></div>
               </td>
+            </tr>
 
-              <!-- Risk Assessment Column -->
-              <td style="padding:0;">
-                <div class="photo-heading" style="border-bottom: 1.5px solid #000;">
-                  RISK ASSESSMENT - Demerit / MITIGATION
-                </div>
-                <div id="pv-risk" style="padding:4px 6px; font-size:9.5px; white-space:pre-wrap;"></div>
-              </td>
+            <!-- ROW 11: DATA 1 -->
+            <tr>
+              <td class="table-center"><b>Q</b> <span id="pv-tickQ"></span></td>
+              <td class="table-center"><b>PM</b> <span id="pv-tickPM"></span></td>
+              <td class="table-center" id="pv-replicationArea1">&nbsp;</td>
+              <td class="table-center" id="pv-replicationDate1">&nbsp;</td>
+            </tr>
+
+            <!-- ROW 12: DATA 2 -->
+            <tr>
+              <td class="table-center"><b>C</b> <span id="pv-tickC"></span></td>
+              <td class="table-center"><b>EM</b> <span id="pv-tickEM"></span></td>
+              <td class="table-center" id="pv-replicationArea2">&nbsp;</td>
+              <td class="table-center" id="pv-replicationDate2">&nbsp;</td>
+            </tr>
+
+            <!-- ROW 13: DATA 3 -->
+            <tr>
+              <td class="table-center"><b>D</b> <span id="pv-tickD"></span></td>
+              <td class="table-center"><b>QM</b> <span id="pv-tickQM"></span></td>
+              <td class="table-center" id="pv-replicationArea3">&nbsp;</td>
+              <td class="table-center" id="pv-replicationDate3">&nbsp;</td>
+            </tr>
+
+            <!-- ROW 14: DATA 4 -->
+            <tr>
+              <td class="table-center"><b>S</b> <span id="pv-tickS"></span></td>
+              <td class="table-center"><b>OTPM</b> <span id="pv-tickOTPM"></span></td>
+              <td class="table-center" id="pv-replicationArea4">&nbsp;</td>
+              <td class="table-center" id="pv-replicationDate4">&nbsp;</td>
+            </tr>
+
+            <!-- ROW 15: FINAL BOTTOM ROW -->
+            <tr>
+              <td class="table-center"><b>M</b> <span id="pv-tickM"></span></td>
+              <td class="table-center"><b>SHE</b> <span id="pv-tickSHE"></span></td>
+              <td class="table-center" colspan="2" style="background:#fcfcfc;"></td>
             </tr>
 
           </table>
