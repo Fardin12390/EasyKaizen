@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyKaizen — Kaizen Form Generator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --yellow: #FFEB3B;
+      --dark-yellow: #FBC02D;
+      --black: #1a1a1a;
+      --gray: #333;
+      --border: #222;
+      --light-bg: #f5f5f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: #e8e8e8;
+      color: var(--black);
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      background: #1a1a1a;
+      color: white;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 4px solid var(--dark-yellow);
+    }
+
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--dark-yellow);
+    }
+
+    .top-bar p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+      margin-top: 2px;
+    }
+
+    .container {
+      display: flex;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .input-panel {
+      flex: 1;
+      min-width: 340px;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .section {
+      background: white;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .section-header {
+      background: #f8f8f8;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .section-num {
+      background: var(--dark-yellow);
+      color: #111;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .section-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #444;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      transition: border 0.2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: var(--dark-yellow);
+      box-shadow: 0 0 0 3px rgba(251, 192, 45, 0.25);
+    }
+
+    textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .photo-upload {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      background: #fafafa;
+      transition: all 0.2s;
+      position: relative;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .photo-upload:hover {
+      border-color: var(--dark-yellow);
+      background: #fffef5;
+    }
+
+    .photo-upload.has-image {
+      border-style: solid;
+      padding: 6px;
+    }
+
+    .photo-upload img {
+      max-width: 100%;
+      max-height: 120px;
+      border-radius: 4px;
+      object-fit: contain;
+    }
+
+    .photo-upload input {
+      display: none;
+    }
+
+    .photo-label {
+      font-size: 0.85rem;
+      color: #777;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .impact-grid input {
+      padding: 6px 8px;
+      font-size: 0.85rem;
+    }
+
+    .impact-row-label {
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .preview-panel {
+      flex: 1.4;
+      min-width: 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .preview-wrapper {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      overflow: hidden;
+      border: 3px solid #222;
+      position: relative;
+    }
+
+    #kaizen-form {
+      width: 900px;
+      background: var(--yellow);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      color: #000;
+      border-collapse: collapse;
+      line-height: 1.25;
+    }
+
+    #kaizen-form table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    #kaizen-form td, #kaizen-form th {
+      border: 1.5px solid #111;
+      padding: 4px 6px;
+      vertical-align: top;
+    }
+
+    .form-title {
+      font-size: 18px;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 1px;
+      padding: 8px !important;
+      background: var(--yellow);
+    }
+
+    .field-label {
+      font-weight: 700;
+      font-size: 10px;
+      white-space: nowrap;
+    }
+
+    .field-value {
+      font-size: 11px;
+      min-height: 18px;
+      word-break: break-word;
+    }
+
+    .photo-box {
+      height: 180px;
+      text-align: center;
+      vertical-align: middle !important;
+      background: #fffde7;
+      position: relative;
+    }
+
+    .photo-box img {
+      max-width: 98%;
+      max-height: 170px;
+      object-fit: contain;
+    }
+
+    .photo-box .placeholder {
+      color: #888;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .big-cell {
+      min-height: 55px;
+    }
+
+    .impact-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px;
+    }
+
+    .impact-table td, .impact-table th {
+      border: 1px solid #111;
+      padding: 3px 4px;
+      text-align: center;
+    }
+
+    .impact-table th {
+      background: #fff9c4;
+      font-weight: 700;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      max-width: 900px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-download {
+      background: #1a1a1a;
+      color: white;
+    }
+
+    .btn-download:hover {
+      background: #333;
+      transform: translateY(-1px);
+    }
+
+    .btn-whatsapp {
+      background: var(--dark-yellow);
+      color: #111;
+    }
+
+    .btn-whatsapp:hover {
+      background: #f9a825;
+      transform: translateY(-1px);
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .note {
+      font-size: 0.8rem;
+      color: #666;
+      text-align: center;
+      max-width: 600px;
+    }
+
+    @media (max-width: 1100px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .input-panel {
+        max-width: 100%;
+        width: 100%;
+      }
+      .preview-panel {
+        min-width: 100%;
+      }
+      #kaizen-form {
+        width: 100%;
+        max-width: 900px;
+        transform-origin: top left;
+      }
+    }
+
+    @media (max-width: 700px) {
+      #kaizen-form {
+        font-size: 9px;
+      }
+      .photo-box {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div>
+      <div class="logo">EASY<span>KAIZEN</span></div>
+      <p>KAIZEN FORM GENERATOR — fill each section, preview updates live, then download or share.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="input-panel">
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">01</div>
+          HEADER
+        </div>
+        <div class="section-body">
+          <div>
+            <label>Project Ref / Description</label>
+            <input type="text" id="projectRef" placeholder="e.g. KZ-2026-014 / Reduce setup time" />
+          </div>
+          <div>
+            <label>Theme / Loss Category</label>
+            <input type="text" id="theme" placeholder="e.g. Productivity / Setup loss" />
+          </div>
+          <div>
+            <label>Location (5S Zone / Circle / Equipment)</label>
+            <input type="text" id="location" placeholder="e.g. Assembly Line-2 / Zone B" />
+          </div>
+          <div style="display:flex; gap:10px;">
+            <div style="flex:1">
+              <label>Started On</label>
+              <input type="date" id="startedOn" />
+            </div>
+            <div style="flex:1">
+              <label>Completed On</label>
+              <input type="date" id="completedOn" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">02</div>
+          TEAM & ROOT CAUSE
+        </div>
+        <div class="section-body">
+          <div>
+            <label>Leader / Members</label>
+            <textarea id="leaderMembers" placeholder="Leader: Rahim&#10;Members: Karim, Salma, ..."></textarea>
+          </div>
+          <div>
+            <label>Root Cause Analysis (Why-Why) Ref No</label>
+            <input type="text" id="rcaRef" placeholder="e.g. RCA-089" />
+          </div>
+          <div>
+            <label>Root Cause / Why-Why details</label>
+            <textarea id="rcaDetails" placeholder="1. Why...&#10;2. Why...&#10;Root cause: ..."></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">03</div>
+          PROBLEM & BACKGROUND
+        </div>
+        <div class="section-body">
+          <div>
+            <label>Background (Before)</label>
+            <textarea id="background" placeholder="Describe the situation before improvement..."></textarea>
+          </div>
+          <div>
+            <label>Problem Description</label>
+            <textarea id="problem" placeholder="What was the problem?"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">04</div>
+          IMPROVEMENT DETAILS
+        </div>
+        <div class="section-body">
+          <div>
+            <label>Jobs / Improvement Carried Out (Work Order Ref)</label>
+            <textarea id="jobs" placeholder="What actions were taken? Work Order Ref if any..."></textarea>
+          </div>
+          <div>
+            <label>Bench Mark</label>
+            <input type="text" id="benchmark" placeholder="e.g. Previous best / Industry standard" />
+          </div>
+          <div>
+            <label>Targets</label>
+            <textarea id="targets" placeholder="What targets were set?"></textarea>
+          </div>
+          <div>
+            <label>Results</label>
+            <textarea id="results" placeholder="What results were achieved?"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">05</div>
+          BENEFITS & ADVANTAGE
+        </div>
+        <div class="section-body">
+          <div>
+            <label>After Advantage</label>
+            <textarea id="advantage" placeholder="What advantages were gained after Kaizen?"></textarea>
+          </div>
+          <div>
+            <label>Benefit: After Kaizen How Much Gain (Bdt)</label>
+            <input type="text" id="benefitBdt" placeholder="e.g. 45,000 BDT / month" />
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">06</div>
+          IMPACT ON (P Q C D S M)
+        </div>
+        <div class="section-body">
+          <div class="impact-grid">
+            <div class="impact-row-label">P</div>
+            <input type="text" id="impactP" placeholder="Productivity impact..." />
+            <div class="impact-row-label">Q</div>
+            <input type="text" id="impactQ" placeholder="Quality impact..." />
+            <div class="impact-row-label">C</div>
+            <input type="text" id="impactC" placeholder="Cost impact..." />
+            <div class="impact-row-label">D</div>
+            <input type="text" id="impactD" placeholder="Delivery impact..." />
+            <div class="impact-row-label">S</div>
+            <input type="text" id="impactS" placeholder="Safety impact..." />
+            <div class="impact-row-label">M</div>
+            <input type="text" id="impactM" placeholder="Morale impact..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">07</div>
+          REPLICATION & RISK
+        </div>
+        <div class="section-body">
+          <div>
+            <label>Horizontal Replication - Area</label>
+            <input type="text" id="replicationArea" placeholder="Where else can this be applied?" />
+          </div>
+          <div>
+            <label>Horizontal Replication - Target Date</label>
+            <input type="date" id="replicationDate" />
+          </div>
+          <div>
+            <label>Risk Assessment - Demerit / Mitigation</label>
+            <textarea id="risk" placeholder="Any risk? How mitigated?"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-header">
+          <div class="section-num">08</div>
+          PHOTOS
+        </div>
+        <div class="section-body">
+          <div>
+            <label>Sketch / Photo BEFORE</label>
+            <div class="photo-upload" id="beforeUpload" onclick="document.getElementById('beforeInput').click()">
+              <input type="file" id="beforeInput" accept="image/*" />
+              <div class="photo-label">Tap to upload BEFORE photo</div>
+            </div>
+          </div>
+          <div>
+            <label>Sketch / Photo AFTER</label>
+            <div class="photo-upload" id="afterUpload" onclick="document.getElementById('afterInput').click()">
+              <input type="file" id="afterInput" accept="image/*" />
+              <div class="photo-label">Tap to upload AFTER photo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="preview-panel">
+      <div class="preview-wrapper">
+        <div id="kaizen-form">
+          <table>
+            <tr>
+              <td colspan="4" class="form-title">KAIZEN FORM</td>
+              <td colspan="2" style="font-size:11px;">
+                <span class="field-label">Project Ref /Description :</span><br>
+                <span class="field-value" id="pv-projectRef"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td style="width:18%;">
+                <span class="field-label">Theme/loss category :</span><br>
+                <span class="field-value" id="pv-theme"></span>
+              </td>
+              <td style="width:18%;">
+                <span class="field-label">Location ( 5S Zone/Circle /Equipment ):</span><br>
+                <span class="field-value" id="pv-location"></span>
+              </td>
+              <td style="width:14%;">
+                <span class="field-label">Started On :</span><br>
+                <span class="field-value" id="pv-startedOn"></span>
+                <br><br>
+                <span class="field-label">Completed On :</span><br>
+                <span class="field-value" id="pv-completedOn"></span>
+              </td>
+              <td colspan="3" rowspan="2" class="photo-box" id="pv-beforeBox">
+                <div class="placeholder">SKETCH/ PHOTO BEFORE</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="field-label">Leader/Members :</span><br>
+                <span class="field-value" id="pv-leaderMembers" style="white-space:pre-wrap;"></span>
+              </td>
+              <td colspan="2">
+                <span class="field-label">Root Cause Analysis (Why-Why) : Ref No -</span>
+                <span class="field-value" id="pv-rcaRef"></span><br>
+                <span class="field-value" id="pv-rcaDetails" style="white-space:pre-wrap;"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="big-cell">
+                <span class="field-label">Background ( Before ) :</span><br>
+                <span class="field-value" id="pv-background" style="white-space:pre-wrap;"></span>
+              </td>
+              <td colspan="2" class="big-cell">
+                <span class="field-label">Problem Description:</span><br>
+                <span class="field-value" id="pv-problem" style="white-space:pre-wrap;"></span>
+              </td>
+              <td colspan="3" rowspan="4" class="photo-box" id="pv-afterBox">
+                <div class="placeholder">SKETCH/ PHOTO AFTER</div>
+              </td>
+            </tr>
+
+            <tr>
+              <td rowspan="3" class="big-cell">
+                <span class="field-label">Jobs /Impr Carried Out ( WorkOrder Ref ) :</span><br>
+                <span class="field-value" id="pv-jobs" style="white-space:pre-wrap;"></span>
+              </td>
+              <td colspan="2">
+                <span class="field-label">Bench Mark :</span>
+                <span class="field-value" id="pv-benchmark"></span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span class="field-label">Targets :</span><br>
+                <span class="field-value" id="pv-targets" style="white-space:pre-wrap;"></span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <span class="field-label">Results :</span><br>
+                <span class="field-value" id="pv-results" style="white-space:pre-wrap;"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>
+                <span class="field-label">After Advantage :</span><br>
+                <span class="field-value" id="pv-advantage" style="white-space:pre-wrap;"></span>
+              </td>
+              <td colspan="2">
+                <span class="field-label">Benefit :After Kaizen How Much Gain (Bdt):</span><br>
+                <span class="field-value" id="pv-benefitBdt"></span>
+              </td>
+              <td colspan="3" style="font-size:10px; vertical-align:top;">
+                <span class="field-label">RISK ASSESSMENT - Demerit / MITIGATION</span><br>
+                <span class="field-value" id="pv-risk" style="white-space:pre-wrap;"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="3" style="padding:0;">
+                <table class="impact-table">
+                  <tr>
+                    <th style="width:30px;">Impact on</th>
+                    <th>FI</th>
+                    <th colspan="3">Horizontal Replication</th>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">P</td>
+                    <td id="pv-impactP" style="text-align:left; padding-left:6px;"></td>
+                    <td rowspan="2" style="width:80px; font-weight:700;">Area</td>
+                    <td rowspan="2" id="pv-replicationArea" style="text-align:left;"></td>
+                    <td rowspan="2" style="width:90px;">
+                      <strong>Target Date</strong><br>
+                      <span id="pv-replicationDate"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">Q</td>
+                    <td id="pv-impactQ" style="text-align:left; padding-left:6px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">C</td>
+                    <td id="pv-impactC" style="text-align:left; padding-left:6px;"></td>
+                    <td colspan="3" rowspan="4" style="vertical-align:top; text-align:left; font-size:10px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">D</td>
+                    <td id="pv-impactD" style="text-align:left; padding-left:6px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">S</td>
+                    <td id="pv-impactS" style="text-align:left; padding-left:6px;"></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:700;">M</td>
+                    <td id="pv-impactM" style="text-align:left; padding-left:6px;"></td>
+                  </tr>
+                </table>
+              </td>
+              <td colspan="3" style="background:#fff9c4; font-size:10px; text-align:center;"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-download" id="downloadBtn" onclick="downloadImage()">
+          ⬇ DOWNLOAD IMAGE
+        </button>
+        <button class="btn btn-whatsapp" id="whatsappBtn" onclick="shareWhatsApp()">
+          SHARE TO WHATSAPP
+        </button>
+      </div>
+      <p class="note">
+        On mobile, “Share to WhatsApp” opens your device’s share sheet — pick WhatsApp from there.
+        If unavailable, download the image and attach it manually.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    const bindings = [
+      ['projectRef', 'pv-projectRef'],
+      ['theme', 'pv-theme'],
+      ['location', 'pv-location'],
+      ['startedOn', 'pv-startedOn'],
+      ['completedOn', 'pv-completedOn'],
+      ['leaderMembers', 'pv-leaderMembers'],
+      ['rcaRef', 'pv-rcaRef'],
+      ['rcaDetails', 'pv-rcaDetails'],
+      ['background', 'pv-background'],
+      ['problem', 'pv-problem'],
+      ['jobs', 'pv-jobs'],
+      ['benchmark', 'pv-benchmark'],
+      ['targets', 'pv-targets'],
+      ['results', 'pv-results'],
+      ['advantage', 'pv-advantage'],
+      ['benefitBdt', 'pv-benefitBdt'],
+      ['impactP', 'pv-impactP'],
+      ['impactQ', 'pv-impactQ'],
+      ['impactC', 'pv-impactC'],
+      ['impactD', 'pv-impactD'],
+      ['impactS', 'pv-impactS'],
+      ['impactM', 'pv-impactM'],
+      ['replicationArea', 'pv-replicationArea'],
+      ['replicationDate', 'pv-replicationDate'],
+      ['risk', 'pv-risk'],
+    ];
+
+    bindings.forEach(([inputId, previewId]) => {
+      const input = document.getElementById(inputId);
+      const preview = document.getElementById(previewId);
+      if (!input || !preview) return;
+
+      const update = () => {
+        let val = input.value;
+        if (input.type === 'date' && val) {
+          const [y, m, d] = val.split('-');
+          val = `${d}-${m}-${y}`;
+        }
+        preview.textContent = val;
+      };
+
+      input.addEventListener('input', update);
+      input.addEventListener('change', update);
+    });
+
+    function setupPhoto(inputId, uploadDivId, previewBoxId) {
+      const input = document.getElementById(inputId);
+      const uploadDiv = document.getElementById(uploadDivId);
+      const previewBox = document.getElementById(previewBoxId);
+
+      input.addEventListener('change', function handler(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          uploadDiv.classList.add('has-image');
+          uploadDiv.innerHTML = `<img src="${ev.target.result}" alt="preview" /><input type="file" id="${inputId}" accept="image/*" style="display:none"/>`;
+          document.getElementById(inputId).addEventListener('change', handler);
+          previewBox.innerHTML = `<img src="${ev.target.result}" alt="photo" />`;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    setupPhoto('beforeInput', 'beforeUpload', 'pv-beforeBox');
+    setupPhoto('afterInput', 'afterUpload', 'pv-afterBox');
+
+    async function downloadImage() {
+      const btn = document.getElementById('downloadBtn');
+      btn.disabled = true;
+      btn.textContent = 'Generating...';
+
+      try {
+        const form = document.getElementById('kaizen-form');
+        const canvas = await html2canvas(form, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#FFEB3B',
+          logging: false,
+        });
+
+        const link = document.createElement('a');
+        link.download = `Kaizen_Form_${new Date().toISOString().slice(0,10)}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+      } catch (err) {
+        console.error(err);
+        alert('Error generating image. Please try again.');
+      }
+
+      btn.disabled = false;
+      btn.textContent = '⬇ DOWNLOAD IMAGE';
+    }
+
+    async function shareWhatsApp() {
+      const btn = document.getElementById('whatsappBtn');
+      btn.disabled = true;
+      btn.textContent = 'Preparing...';
+
+      try {
+        const form = document.getElementById('kaizen-form');
+        const canvas = await html2canvas(form, {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: '#FFEB3B',
+          logging: false,
+        });
+
+        canvas.toBlob(async (blob) => {
+          const file = new File([blob], 'Kaizen_Form.png', { type: 'image/png' });
+
+          if (navigator.canShare && navigator.canShare({ files: [file] })) {
+            await navigator.share({
+              files: [file],
+              title: 'Kaizen Form',
+              text: 'Kaizen Form',
+            });
+          } else {
+            const link = document.createElement('a');
+            link.download = 'Kaizen_Form.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            alert('Image downloaded. Please attach it manually in WhatsApp.');
+          }
+
+          btn.disabled = false;
+          btn.textContent = 'SHARE TO WHATSAPP';
+        }, 'image/png');
+      } catch (err) {
+        console.error(err);
+        alert('Sharing failed. Please download the image and share manually.');
+        btn.disabled = false;
+        btn.textContent = 'SHARE TO WHATSAPP';
+      }
+    }
+  </script>
+</body>
+</html>
